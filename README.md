@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <p align="center">Jansens Films - Api Rest Nodejs<p>
+    <p align="center">Agendamento Clínico - Api Rest Nodejs<p>
 </h1>
 
 ## O que é uma API REST?
@@ -46,44 +46,41 @@ Quando fazemos uma requisição na API (quando chamamos uma rota), como vamos sa
 
 Então na nossa API devemos informar o código ao responder as requisições feitas pelas rotas que desenvolvemos. Caso nossa resposta seja com sucesso, passamos então um status 200. Caso dê algum erro que foi ocasionado por responsabilidade do usuário, enviamos um erro 4xx. Por exemplo, se um usuário não tem permissão de acesso para chamar uma rota que criamos, devemos retornar para ele um status 401, que significa que ele não está autorizado. Porém caso dê algum erro que seja de responsabilidade da nossa API, poderemos retornar um status 500.
 
-# Projeto API Nodejs "Jansen's Films"
+# Projeto API Nodejs "Agendamento Clínico"
 
-![films](https://3.bp.blogspot.com/-tUyCgcmz1H4/VZV3TTqObtI/AAAAAAAAFt4/mYrKNU-r52E/s1600/dicas%2Bde%2Bfilme%2Bbau%2Bde%2Bmenino.jpg)
+![clinico](https://pubimg.band.uol.com.br/files/68f73c53a6e7c7c24f06.png)
 
-Parabéns, você acaba de ser contratada por uma empresa de audio visual chamada Jansen's Films para desenvolver um novo produto que deverá ser lançado em breve. Nesse estágio inicial do produto, o mesmo consistirá em um aplicativo e uma página web onde o usuário poderá controlar uma lista com filmes que já assistiu e que gostaria de assistir.
+Uma clínica médica está com problemas para organizar as consultas agendadas e irão precisar desenvolver um novo produto para isso. Nesse estágio inicial, o produto consistirá em um controle de agendamento de consultas, onde o operador poderá gerenciar as consultas do médico, cadastrando novas consultas agendadas e podendo ver e controlar quais já foram confirmadas ou não.
 
-<imagem do projeto>
-    <imagem front com tabela>
+Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
-Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver o aplicativo e a página web que irão se comunicar com a API que você irá desenvolver.
-
-A listagem de filmes será no seguinte formato: ```{ nome, genero, sinopse, assistido/ não assistido }```
+A listagem de filmes será no seguinte formato: ```{ paciente, telefone, planoSaude, carteirinha, dataHora, especialidade, medico, confirmado }```
 
 O novo produto deverá:
 
-- [x] poder listar todos os filmes da lista do usuário
-- [x] poder adicionar um novo filme
-- [x] poder remover filme da lista
-- [x] poder alterar informações do filme
-- [x] poder marcar/desmarcar filme como assistido
+- [x] poder listar todos o agendamentos da clínica
+- [x] poder adicionar um agendamento
+- [x] poder remover agendamento da lista
+- [x] poder alterar informações do agendamento
+- [x] poder marcar/desmarcar consulta confirmada
 
 Sendo assim precisaremos criar 5 rotas:
 
-| Verbo  | Descrição da Rota                     |
-| ------ | --------------------------------------|
-| POST   | Adicionar novo filme                  |
-| GET    | Recuperar filme                       |
-| DELETE | Remover filme                         |
-| PUT    | Alterar informações do filme          |
-| PATCH  | Marcar/Desmarcar filme como assistido |
+| Verbo  | Descrição da Rota                     	|
+| ------ | ---------------------------------------------|
+| POST   | Adicionar novo agendamento            	|
+| GET    | Recuperar agendamento                 	|
+| DELETE | Remover agendamento                   	|
+| PUT    | Alterar informações do agendamento    	|
+| PATCH  | Marcar/Desmarcar agendamento como confirmado |
 
 ## Como criar uma nova API Nodejs?
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "jansensfilms". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "agendamentoclinico". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
-Com o terminal aberto na pasta "jansensfilms", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
+Com o terminal aberto na pasta "agendamentoclinico", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
     
 Com isso um arquivo com o nome de package.json será criado. Esse arquivo é muito importante pois define que o nosso projeto como sendo Node.
 
