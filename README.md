@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <p align="center">Agendamento Clínico - Api Rest Nodejs<p>
+    <p align="center">Meu Médico Favorito - Api Rest Nodejs<p>
 </h1>
 
 ## O que é uma API REST?
