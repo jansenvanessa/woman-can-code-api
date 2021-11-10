@@ -46,37 +46,35 @@ Quando fazemos uma requisição na API (quando chamamos uma rota), como vamos sa
 
 Então na nossa API devemos informar o código ao responder as requisições feitas pelas rotas que desenvolvemos. Caso nossa resposta seja com sucesso, passamos então um status 200. Caso dê algum erro que foi ocasionado por responsabilidade do usuário, enviamos um erro 4xx. Por exemplo, se um usuário não tem permissão de acesso para chamar uma rota que criamos, devemos retornar para ele um status 401, que significa que ele não está autorizado. Porém caso dê algum erro que seja de responsabilidade da nossa API, poderemos retornar um status 500.
 
-# Projeto API Nodejs "Agendamento Clínico"
+# Projeto API Nodejs "Meu Médico Favorito"
 
-![clinico](https://pubimg.band.uol.com.br/files/68f73c53a6e7c7c24f06.png)
+![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
 
-Uma clínica médica está com problemas para organizar as consultas agendadas e irão precisar desenvolver um novo produto para isso. Nesse estágio inicial, o produto consistirá em um controle de agendamento de consultas, onde o operador poderá gerenciar as consultas do médico, cadastrando novas consultas agendadas e podendo ver e controlar quais já foram confirmadas ou não.
+Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
-Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
-
-A listagem de filmes será no seguinte formato: ```{ paciente, telefone, planoSaude, carteirinha, dataHora, especialidade, medico, confirmado }```
+A listagem de filmes será no seguinte formato: ```{ pacienteId, medicoId, medicoEspecialidade, medicoNome, medicoEndereco, medicoTelefone, medicoCRM, medicofavorito }```
 
 O novo produto deverá:
 
-- [x] poder listar todos o agendamentos da clínica
-- [x] poder adicionar um agendamento
-- [x] poder remover agendamento da lista
-- [x] poder alterar informações do agendamento
-- [x] poder marcar/desmarcar consulta confirmada
+- [x] poder listar todos os médicos
+- [x] poder adicionar um novo médico
+- [x] poder remover um médico da lista
+- [x] poder alterar informações do médico
+- [x] poder favoritar/desfavoritar um médico
 
 Sendo assim precisaremos criar 5 rotas:
 
 | Verbo  | Descrição da Rota                     	|
 | ------ | ---------------------------------------------|
-| POST   | Adicionar novo agendamento            	|
-| GET    | Recuperar agendamento                 	|
-| DELETE | Remover agendamento                   	|
-| PUT    | Alterar informações do agendamento    	|
-| PATCH  | Marcar/Desmarcar agendamento como confirmado |
+| POST   | Adicionar novo médico            		|
+| GET    | Recuperar médicos                 		|
+| DELETE | Remover médico                   		|
+| PUT    | Alterar informações do médico    		|
+| PATCH  | Marcar/Desmarcar médico como favorito 	|
 
 ## Como criar uma nova API Nodejs?
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "agendamentoclinico". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meumedicofavorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
