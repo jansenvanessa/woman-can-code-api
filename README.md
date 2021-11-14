@@ -56,7 +56,7 @@ Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e f
 
 ## Onde vamos guardar nossos dados?
 
-Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação.
+Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação. Nele subiremos nossa aplicação quando tiver sido desenvolvida e também nosso banco de dados.
 
 ### Criação de uma conta no Heroku
 
