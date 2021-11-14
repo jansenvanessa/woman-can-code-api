@@ -20,7 +20,7 @@ router.put("/:id", controller.updateDoctor)
 
 //http://localhost:3000/movies/:id/watched
 // PATCH alterar o favorite informando se o medico foi favoritado ou nao
-router.patch("/:id/watched", controller.updateFavorite)
+router.patch("/:id/favorite", controller.updateFavorite)
 
 //http://localhost:3000/medicos/:id
 //DELETE para deletar o meu medico

@@ -1,129 +1,91 @@
-const movies = require("../models/movies.json")
-const fs = require("fs")
+const Doctor = require("../models/Doctor")
 
-const getAllDoctors = (req, res) => {
-    console.log("Minha query string:")
-    console.log(req.query)
-    const genre = req.query.genre // puxamos a informação de gênero da nossa query string
-    if (genre) { // se eu tiver passado a query string com o gênero na hora de fazer a request...
-        //filtra por genero meus filmes
-        //Por exemplo: "Aventura" está inclusa nesse array? -> [ "Aventura", "Comedia"]
-        const moviesByGenre = movies.filter(movie => movie.genre.includes(genre)) // encontro todos os filmes do gênero que filtrei
-        res.status(200).send(moviesByGenre) // retorno apenas os filmes com o gênero que filtrei por query string
-    } else { // se eu NAO tiver passado genero na minha query string...
-        res.status(200).send(movies) // retorna todos os filmes sem filtro
-    }
-}
-
-const createDoctor = (req, res) => {
-    const { id, name, genre, synopsis, watched } = req.body
-    movies.push({ id, name, genre, synopsis, watched }) // adicionando meu filme no array de filmes
-    fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) {
-        if (err) {
-            res.status(500).send({ message: err }) //responder com o erro
-        } else {
-            console.log("O filme foi gravado no arquivo com sucesso!")
-            const movieFound = movies.find(movie => movie.id == id) // recupero o filme que criei no array de filmes
-            res.status(200).send(movieFound)
-        }
-    })
-}
-
-const getDoctor = (req, res) => {
-    const movieId = req.params.id
-    const movieFound = movies.find(movie => movie.id == movieId)
-
-    if (movieFound) {
-        res.status(200).send(movieFound)
-    } else {
-        // 404 Not Found -> nao encontrei o filme pelo id
-        res.status(404).send({ message: "Filme não encontrado" })
-    }
-}
-
-const updateDoctor = (req, res) => {
-    const movieId = req.params.id
-    const movieToUpdate = req.body
-
-    const movieFound = movies.find(movie => movie.id == movieId) //separei o filme que vou atualizar
-    const movieIndex = movies.indexOf(movieFound) // separei o indice do filme no meu array de filmes
-
-    if (movieIndex >= 0) { // verifico se o filme existe no array de filmes
-        // filme foi encontrado
-        movies.splice(movieIndex, 1, movieToUpdate) // busco no array o filme, excluo o registro antigo e subtituo pelo novo
-        fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) {
-            if (err) {
-                res.status(500).send({ message: err }) // caso de erro retorno status 500
-            } else {
-                console.log("Arquivo de filme foi atualizado com sucesso!")
-                const movieUpdated = movies.find(movie => movie.id == movieId)
-                res.status(200).send(movieUpdated)
-            }
-        })
-    } else {
-        //filme nao foi encontrado
-        res.status(404).send({ message: "Filme não encontrado para ser atualizado!" })
-    }
-}
-
-const updateFavorite = (req, res) => {
+const createDoctor = async (req, res) => {
+    const { name, crm, specialty, clinic, phone, favorite } = req.body
     try {
-        const movieId = req.params.id
-        const newWatched = req.body.watched // status se foi assistido (true) ou se nao foi assistido (false)
-
-        const movieToUpdate = movies.find(movie => movie.id == movieId) // spearei o filme que irei mudar o status de assistido
-        const movieIndex = movies.indexOf(movieToUpdate)
-
-        if (movieIndex >= 0) {
-            // achei o filme
-            movieToUpdate.watched = newWatched // atribuo o novo status
-            movies.splice(movieIndex, 1, movieToUpdate) // atualizo meu array de filmes
-            fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    console.log("Arquivo de filme foi atualizado com sucesso!")
-                    const movieUpdated = movies.find(movie => movie.id == movieId)
-                    res.status(200).send(movieUpdated)
-                }
-            })
-        } else {
-            // nao achei o filme
-            res.status(400).send({ message: "Filme não encontrado para atualizar o status de asssistido" })
-        }
-    } catch (err) {
-        console.log(err)
-        res.status(500).send("Erro na api")
+        const doctor = await Doctor.create({ name, crm, specialty, clinic, phone, favorite });
+        console.log(`Medico ${doctor.name} criado`);
+        res.status(201).send(doctor)
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
-
 }
 
-const deleteDoctor = (req, res) => {
+const getDoctor = async (req, res) => {
+    const doctorId = req.params.id
     try {
-        const movieId = req.params.id
-        const moviesFound = movies.filter(movie => movie.id == movieId) // encontro todos os filmes com o id buscado
-
-        if (moviesFound && moviesFound.length > 0) {
-            moviesFound.forEach(movie => { // deleto cada um dos filmes encontrados e vou deletar cada um deles
-                const movieIndex = movies.indexOf(movie)
-                movies.splice(movieIndex, 1)
-            })
-
-            fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) {
-                if (err) {
-                    res.status(500).send({ message: err })
-                } else {
-                    console.log("Filme deletado com sucesso do arquivo!")
-                    res.sendStatus(204) // 204 No Content - sem corpo de resposta, apenas o status
-                }
-            })
-
+        const doctor = await Doctor.findByPk({
+            where: { id: doctorId }
+        });
+        if (doctor) {
+            res.status(200).send(doctor)
         } else {
-            res.status(400).send({ message: "Filme não encontrado para deletar" })
+            res.status(404).send({ message: `Médico não encontrado com o id ${doctorId}` })
         }
     } catch (error) {
-        console.log(error)
-        res.status(500).send({ message: "Erro ao deletar filme" })
+        res.status(500).send({ message: error.message })
+    }
+}
+
+const getAllDoctors = async (req, res) => {
+    const favorite = req.query.favorite
+    try {
+        const where = favorite ? { where: { favorite } } : {}
+        const doctors = await Doctor.findAll(where)
+        if (doctors && doctors.length > 0) {
+            res.status(200).send(doctors)
+        } else {
+            res.status(204).send()
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
+
+const updateDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    const { name, crm, specialty, clinic, phone, favorite } = req.body
+    try {
+        const rowsUpdated = await Doctor.update({ name, crm, specialty, clinic, phone, favorite }, {
+            where: { id: doctorId }
+        });
+        if (rowsUpdated && rowsUpdated > 0) {
+            res.status(200).send({ message: `${rowsUpdated[0]} medico(s) atualizado(s)` })
+        } else {
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para atualizar` })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
+
+const updateFavorite = async (req, res) => {
+    const doctorId = req.params.id
+    const favorite = req.body.favorite
+    try {
+        const rowsUpdated = await Doctor.update({ favorite }, { where: { id: doctorId } });
+        if (rowsUpdated && rowsUpdated > 0) {
+            res.status(200).send({ message: `${rowsUpdated[0]} medico(s) com informação de favorito atualizada com sucesso` })
+        } else {
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para atualizar informação de favorito` })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+
+}
+
+const deleteDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    try {
+        const rowsDeleted = await Doctor.destroy({ where: { id: doctorId } });
+        if (rowsDeleted) {
+            res.status(200).send({ message: `${rowsDeleted[0]} medico(s) deletado(s) com sucesso` })
+        } else {
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para deletar` })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
 }
 
