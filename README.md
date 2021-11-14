@@ -52,6 +52,27 @@ Então na nossa API devemos informar o código ao responder as requisições fei
 
 Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
+Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
+
+## Onde vamos guardar nossos dados?
+
+Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação.
+
+### Criação de uma conta no Heroku
+
+Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.heroku.com/ e clique em *Sign up*. Em seguida preencha com seus dados e clique para criar uma conta gratuita. Possivelmente vai ser enviado um e-mail de confirmação que deve ser aberto para confirmar a conta e essa quando confirmada você poderá definir uma senha. Agora que você já possui uma conta ativada, login e senha, você pode acessar o https://dashboard.heroku.com . Ao fazer isso deverá aceitar os termos da plataforma para seguir e feito isso a tela abaixo deverá ser exibida:
+
+![heroku_welcome](https://i.imgur.com/15pAlkd.png)
+
+### Criação de uma aplicação no Heroku
+
+Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para
+
+### Criando nosso banco de dados no Heroku
+
+
+## Rotas a desenvolver
+
 A listagem de filmes será no seguinte formato: ```{ pacienteId, medicoId, medicoEspecialidade, medicoNome, medicoEndereco, medicoTelefone, medicoCRM, medicofavorito }```
 
 O novo produto deverá:
