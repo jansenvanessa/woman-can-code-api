@@ -76,8 +76,6 @@ Agora que temos nosso banco de dados criado, podemos desenvolver uma api para ac
 
 # Aula 2 - API REST
 
-## O que é uma API REST?
-
 Antigamente quando desenvolvíamos uma aplicação WEB, não existia uma separação clara do código de FrontEnd e Backend. O código para fazer as telas (Frontend), era em conjunto com o código de negócio (Backend), criando uma forte dependência entre ambos. Hoje ainda é utilizado esse modelo em alguns casos. É sempre importante avaliarmos o projeto que precisamos fazer, para decidirmos o melhor caminho para desenvolvê-lo.
 
 Nesse curso estamos aprendendo como fazer uma API REST, que é uma API Backend, que irá disponilizar rotas, para que o Frontend (tela), consiga se comunicar com a parte da lógica por trás (Backend). Para isso criamos "Endpoints" na nossa API Rest do Backend e deixamos disponíveis para serem utilizadas pelo Frontend. Em outras palavras, criamos possibilidades de ações que podem ser chamadas pelo Frontend.
@@ -239,9 +237,7 @@ Para não precisar ficar escrevendo ```nodemon server.js``` para inicializar o s
 ```
 Dessa forma para inicializar o servidor, basta digitar ```npm start``` no terminal e pressionar enter, que o mesmo já chamará automaticamente o comando ```nodemon server.js```.
 
-# Aula 3 - Rota GET
-
-### Vamos criar nossa primeira rota GET!
+# Aula 3 - Vamos criar nossa primeira rota GET!
 
 Com o projeto configurado e com o servidor rodando, caso a gente tente executar no browser *http://localhost:3000*, vamos receber a mensagem “Cannot GET”. Isso significa que o nosso servidor ainda não está habilitado a devolver uma resposta do método GET no endereço “/“. Isso tudo porque ainda não definimos nenhuma rota no nosso projeto.
 
@@ -393,7 +389,7 @@ Para testar nossa rota GET de listagem de todos os filmes no Postman, deveremos 
 
 ![test_get_postman](https://i.imgur.com/Cby6pIZ.png)
 
-# Aula 4 - Rota POST e GET by id
+# Aula 4 - Rotas POST e GET by id
 
 ### Criando a rota POST
 
