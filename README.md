@@ -3,7 +3,7 @@
     <p align="center">Meu Médico Favorito - Api Rest Nodejs<p>
 </h1>
 
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 1
+# Aula 1 - Banco de Dados
 
 ![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
 
@@ -74,7 +74,7 @@ CREATE TABLE medicos (
 
 Agora que temos nosso banco de dados criado, podemos desenvolver uma api para acessar esses dados, mas você lembra o que é uma api e como funciona? Vamos recordar!
 
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 2
+# Aula 2 - API REST
 
 ## O que é uma API REST?
 
@@ -239,7 +239,7 @@ Para não precisar ficar escrevendo ```nodemon server.js``` para inicializar o s
 ```
 Dessa forma para inicializar o servidor, basta digitar ```npm start``` no terminal e pressionar enter, que o mesmo já chamará automaticamente o comando ```nodemon server.js```.
 
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 3
+# Aula 3 - Rota GET
 
 ### Vamos criar nossa primeira rota GET!
 
@@ -393,7 +393,7 @@ Para testar nossa rota GET de listagem de todos os filmes no Postman, deveremos 
 
 ![test_get_postman](https://i.imgur.com/Cby6pIZ.png)
 
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 4
+# Aula 4 - Rota POST e GET by id
 
 ### Criando a rota POST
 
@@ -487,7 +487,7 @@ Para testar nossa rota GET passando o id como parâmetro, via Postman, deveremos
 
 ![test_get_id_postman](https://i.imgur.com/H1d2lHT.png)
 
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 5
+# Aula 5 - Rota PUT, PATCH, DELETE e publicação da API e Front
 
 ### Criando a rota PUT
 
