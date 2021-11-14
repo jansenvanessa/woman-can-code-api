@@ -66,10 +66,26 @@ Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.
 
 ### Criação de uma aplicação no Heroku
 
-Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para
+Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para isso vamos clicar em *Create new app* e definir um nome para nossa aplicação. O nome de uma aplicação deverá ser único, isso significa que ninguém mais pode ter uma aplicação com o mesmo nome que a sua. Para garantir isso, podemos utilizar como nome de aplicação *seunome-meu-medico-favorito* , substituindo *seunome* pelo seu nome e ao clicar em *Create app* a aplicação será criada para podermos trabalhar:
+
+![new_app](https://i.imgur.com/YInBBRa.png)
+
 
 ### Criando nosso banco de dados no Heroku
 
+Com a aplicação criada, clique no menu, conforme imagem abaixo, e escolha a opção *Data*:
+
+![data](https://i.imgur.com/48fkRiP.png)
+
+Ao fazer isso você será direcionada para o link https://data.heroku.com/ , onde poderá criar um banco de dados Postgres clicando em *Create One*:
+
+![data_postgres](https://i.imgur.com/GrhUiUU.png)
+
+Ao clicar para criar um banco de dados Postgres irá abrir uma janela sobre o Heroku Postgres e nessa, na lateral direita, você deverá clicar em *Install Heroku Postgres*. Ao fazer isso, ele abrirá uma janela solicitando o nome da aplicação onde quer instalar o Heroku Postgres e você deverá informar o nome da aplicação que você criou (ex: *seunome-meu-medico-favorito*) e feito isso deverá clicar em *Submit Order Form*.
+
+![data_postgres_app](https://i.imgur.com/3f7Dt5k.png)
+
+### Criando uma tabela no nosso banco de dados
 
 ## Rotas a desenvolver
 
