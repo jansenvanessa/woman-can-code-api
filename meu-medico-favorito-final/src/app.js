@@ -5,7 +5,7 @@ app.use(express.json())
 
 //routes
 const index = require("./routes/index")
-const movies = require("./routes/movies")
+const doctors = require("./routes/doctors")
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
 })
 
 app.use("/", index)
-app.use("/movies", movies)
+app.use("/doctors", doctors)
 
 module.exports = app
 

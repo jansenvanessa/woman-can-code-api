@@ -1,7 +1,7 @@
 const movies = require("../models/movies.json")
 const fs = require("fs")
 
-const getAllMovies = (req, res) => {
+const getAllDoctors = (req, res) => {
     console.log("Minha query string:")
     console.log(req.query)
     const genre = req.query.genre // puxamos a informação de gênero da nossa query string
@@ -15,7 +15,7 @@ const getAllMovies = (req, res) => {
     }
 }
 
-const createMovie = (req, res) => {
+const createDoctor = (req, res) => {
     const { id, name, genre, synopsis, watched } = req.body
     movies.push({ id, name, genre, synopsis, watched }) // adicionando meu filme no array de filmes
     fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) {
@@ -29,7 +29,7 @@ const createMovie = (req, res) => {
     })
 }
 
-const getMovie = (req, res) => {
+const getDoctor = (req, res) => {
     const movieId = req.params.id
     const movieFound = movies.find(movie => movie.id == movieId)
 
@@ -41,7 +41,7 @@ const getMovie = (req, res) => {
     }
 }
 
-const updateMovie = (req, res) => {
+const updateDoctor = (req, res) => {
     const movieId = req.params.id
     const movieToUpdate = req.body
 
@@ -66,7 +66,7 @@ const updateMovie = (req, res) => {
     }
 }
 
-const updateWatchedStatus = (req, res) => {
+const updateFavorite = (req, res) => {
     try {
         const movieId = req.params.id
         const newWatched = req.body.watched // status se foi assistido (true) ou se nao foi assistido (false)
@@ -98,7 +98,7 @@ const updateWatchedStatus = (req, res) => {
 
 }
 
-const deleteMovie = (req, res) => {
+const deleteDoctor = (req, res) => {
     try {
         const movieId = req.params.id
         const moviesFound = movies.filter(movie => movie.id == movieId) // encontro todos os filmes com o id buscado
@@ -128,10 +128,10 @@ const deleteMovie = (req, res) => {
 }
 
 module.exports = {
-    getAllMovies,
-    createMovie,
-    getMovie,
-    updateMovie,
-    updateWatchedStatus,
-    deleteMovie
+    getAllDoctors,
+    createDoctor,
+    getDoctor,
+    updateDoctor,
+    updateFavorite,
+    deleteDoctor
 }
