@@ -3,6 +3,79 @@
     <p align="center">Meu Médico Favorito - Api Rest Nodejs<p>
 </h1>
 
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 1
+
+![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
+
+Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
+
+Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
+
+## Onde vamos guardar nossos dados?
+
+Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação. Nele subiremos nossa aplicação quando tiver sido desenvolvida e também nosso banco de dados.
+
+### Criação de uma conta no Heroku
+
+Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.heroku.com/ e clique em *Sign up*. Em seguida preencha com seus dados e clique para criar uma conta gratuita. Possivelmente vai ser enviado um e-mail de confirmação que deve ser aberto para confirmar a conta e essa quando confirmada você poderá definir uma senha. Agora que você já possui uma conta ativada, login e senha, você pode acessar o https://dashboard.heroku.com . Ao fazer isso deverá aceitar os termos da plataforma para seguir e feito isso a tela abaixo deverá ser exibida:
+
+![heroku_welcome](https://i.imgur.com/15pAlkd.png)
+
+### Criação de uma aplicação no Heroku
+
+Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para isso vamos clicar em *Create new app* e definir um nome para nossa aplicação. O nome de uma aplicação deverá ser único, isso significa que ninguém mais pode ter uma aplicação com o mesmo nome que a sua. Para garantir isso, podemos utilizar como nome de aplicação *seunome-meu-medico-favorito* , substituindo *seunome* pelo seu nome e ao clicar em *Create app* a aplicação será criada para podermos trabalhar:
+
+![new_app](https://i.imgur.com/YInBBRa.png)
+
+
+### Criando nosso banco de dados no Heroku
+
+Com a aplicação criada, clique no menu, conforme imagem abaixo, e escolha a opção *Data*:
+
+![data](https://i.imgur.com/48fkRiP.png)
+
+Ao fazer isso você será direcionada para o link https://data.heroku.com/ , onde poderá criar um banco de dados Postgres clicando em *Create One*:
+
+![data_postgres](https://i.imgur.com/GrhUiUU.png)
+
+Ao clicar para criar um banco de dados Postgres irá abrir uma janela sobre o Heroku Postgres e nessa, na lateral direita, você deverá clicar em *Install Heroku Postgres*. Ao fazer isso, ele abrirá uma janela solicitando o nome da aplicação onde quer instalar o Heroku Postgres e você deverá informar o nome da aplicação que você criou (ex: *seunome-meu-medico-favorito*) e feito isso deverá clicar em *Submit Order Form*.
+
+![data_postgres_app](https://i.imgur.com/3f7Dt5k.png)
+
+### Conectando no nosso banco de dados
+
+Se formos novamente em https://data.heroku.com/ veremos que o banco de dados que criamos aparecerá listado. Ao clicar nele poderemos ver diversas informações a respeito e indo em *Settings* e então, dentro da sessão *Database Credentials* clicarmos em *View Credentials...* poderemos visualizar informações para nos conectarmos a nossa base de dados.
+
+Na linha do *Heroku Cli* temos um comando que podemos copiar a colar o mesmo no nosso terminal, para se conectar ao banco de dados via linha de comando. Exemplo:
+
+![heroku_cli](https://i.imgur.com/BK4U1qf.png)
+
+Ps: Quando rodar o comando do *Heroku Cli* ele pode abrir uma janela do browser e pedir para você se logar para seguir. Para isso basta se logar pelo browser conforme ele solicitar e depois continuar pelo terminal normalmente.
+
+### Criando tabela de banco de dados
+
+Como a listagem de médicos terá o formato: ```{ id, especialidade, nome, clinica, telefone, crm, favorito }```, deveremos criar a seguinte tabela no nosso terminal:
+
+```
+CREATE TABLE medicos (
+	id serial PRIMARY KEY,
+	especialidade VARCHAR ( 255 ),
+	nome  VARCHAR ( 255 ),
+	clinica VARCHAR ( 255 ),
+	telefone VARCHAR ( 20 ),
+	crm VARCHAR ( 20 ),
+	favorito Boolean
+);
+```
+
+![heroku_cli_create_database](https://i.imgur.com/dU46WzX.png)
+
+### Banco de dados criado, e agora?
+
+Agora que temos nosso banco de dados criado, podemos desenvolver uma api para acessar esses dados, mas você lembra o que é uma api e como funciona? Vamos recordar!
+
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 2
+
 ## O que é uma API REST?
 
 Antigamente quando desenvolvíamos uma aplicação WEB, não existia uma separação clara do código de FrontEnd e Backend. O código para fazer as telas (Frontend), era em conjunto com o código de negócio (Backend), criando uma forte dependência entre ambos. Hoje ainda é utilizado esse modelo em alguns casos. É sempre importante avaliarmos o projeto que precisamos fazer, para decidirmos o melhor caminho para desenvolvê-lo.
@@ -46,50 +119,7 @@ Quando fazemos uma requisição na API (quando chamamos uma rota), como vamos sa
 
 Então na nossa API devemos informar o código ao responder as requisições feitas pelas rotas que desenvolvemos. Caso nossa resposta seja com sucesso, passamos então um status 200. Caso dê algum erro que foi ocasionado por responsabilidade do usuário, enviamos um erro 4xx. Por exemplo, se um usuário não tem permissão de acesso para chamar uma rota que criamos, devemos retornar para ele um status 401, que significa que ele não está autorizado. Porém caso dê algum erro que seja de responsabilidade da nossa API, poderemos retornar um status 500.
 
-# Projeto API Nodejs "Meu Médico Favorito"
-
-![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
-
-Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
-
-Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
-
-## Onde vamos guardar nossos dados?
-
-Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação. Nele subiremos nossa aplicação quando tiver sido desenvolvida e também nosso banco de dados.
-
-### Criação de uma conta no Heroku
-
-Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.heroku.com/ e clique em *Sign up*. Em seguida preencha com seus dados e clique para criar uma conta gratuita. Possivelmente vai ser enviado um e-mail de confirmação que deve ser aberto para confirmar a conta e essa quando confirmada você poderá definir uma senha. Agora que você já possui uma conta ativada, login e senha, você pode acessar o https://dashboard.heroku.com . Ao fazer isso deverá aceitar os termos da plataforma para seguir e feito isso a tela abaixo deverá ser exibida:
-
-![heroku_welcome](https://i.imgur.com/15pAlkd.png)
-
-### Criação de uma aplicação no Heroku
-
-Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para isso vamos clicar em *Create new app* e definir um nome para nossa aplicação. O nome de uma aplicação deverá ser único, isso significa que ninguém mais pode ter uma aplicação com o mesmo nome que a sua. Para garantir isso, podemos utilizar como nome de aplicação *seunome-meu-medico-favorito* , substituindo *seunome* pelo seu nome e ao clicar em *Create app* a aplicação será criada para podermos trabalhar:
-
-![new_app](https://i.imgur.com/YInBBRa.png)
-
-
-### Criando nosso banco de dados no Heroku
-
-Com a aplicação criada, clique no menu, conforme imagem abaixo, e escolha a opção *Data*:
-
-![data](https://i.imgur.com/48fkRiP.png)
-
-Ao fazer isso você será direcionada para o link https://data.heroku.com/ , onde poderá criar um banco de dados Postgres clicando em *Create One*:
-
-![data_postgres](https://i.imgur.com/GrhUiUU.png)
-
-Ao clicar para criar um banco de dados Postgres irá abrir uma janela sobre o Heroku Postgres e nessa, na lateral direita, você deverá clicar em *Install Heroku Postgres*. Ao fazer isso, ele abrirá uma janela solicitando o nome da aplicação onde quer instalar o Heroku Postgres e você deverá informar o nome da aplicação que você criou (ex: *seunome-meu-medico-favorito*) e feito isso deverá clicar em *Submit Order Form*.
-
-![data_postgres_app](https://i.imgur.com/3f7Dt5k.png)
-
-### Criando uma tabela no nosso banco de dados
-
 ## Rotas a desenvolver
-
-A listagem de filmes será no seguinte formato: ```{ pacienteId, medicoId, medicoEspecialidade, medicoNome, medicoEndereco, medicoTelefone, medicoCRM, medicofavorito }```
 
 O novo produto deverá:
 
@@ -208,6 +238,8 @@ Para não precisar ficar escrevendo ```nodemon server.js``` para inicializar o s
   }
 ```
 Dessa forma para inicializar o servidor, basta digitar ```npm start``` no terminal e pressionar enter, que o mesmo já chamará automaticamente o comando ```nodemon server.js```.
+
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 3
 
 ### Vamos criar nossa primeira rota GET!
 
@@ -361,6 +393,8 @@ Para testar nossa rota GET de listagem de todos os filmes no Postman, deveremos 
 
 ![test_get_postman](https://i.imgur.com/Cby6pIZ.png)
 
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 4
+
 ### Criando a rota POST
 
 Para criar um novo filme na nossa listagem, precisaremos escrever uma rota de POST. Para isso no nosso arquivo de rotas de filmes (*routes/movies.js*), iremos incluir a seguinte rota:
@@ -452,6 +486,8 @@ Nesse, atribuítmos o valor do parametro id (req.params.id) a constante *movieId
 Para testar nossa rota GET passando o id como parâmetro, via Postman, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *GET* e digitar *http://localhost:3000/movies/4* (escolhi o id 4 mas você pode testar com outros ids). Ao clicar no botão *send*, se você passou o id de um filme que existe na listagem, o mesmo deverá ser exibido como resposta. Mas caso você passe um id de um filme que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado.
 
 ![test_get_id_postman](https://i.imgur.com/H1d2lHT.png)
+
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 5
 
 ### Criando a rota PUT
 
@@ -577,6 +613,8 @@ Ao clicar no botão *send*, se você passou o id de um filme que existe na lista
 
 ![test_patch_postman](https://i.imgur.com/LGqeSqd.png)
 
+# Projeto API Nodejs "Meu Médico Favorito" - Aula 6
+
 ## Criando a rota de DELETE
 
 Precisamos criar uma rota para poder deletar um filme, dado um id. Deveremos então implementar uma rota de DELETE que deverá permitir deletar o filme da nossa listagem. Para isso, no nosso arquivo de rotas de filmes (*routes/movies.js*), deveremos incluir a seguinte rota:
@@ -631,7 +669,11 @@ Para testar, via Postman, a rota DELETE que deleta um filme, deveremos clicar em
 
 ### API Pronta!
 
-Desenvolvemos todas as rotas necessárias para nosso produto do Jansen's Films. Criamos a rota de POST (que cria um novo filme), duas rotas de GET (uma para trazer todos os filmes e uma para trazer um filme dado o id), PUT (para alterar o filme), PATCH (para alterar o status de assistido do filme) e DELETE (para deletar o filme). Com todas as rotas desenvolvidas na nossa API de filmes, basta o pessoal do front terminar o desenvolvimento para termos o produto pronto para ser lançado!
+Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favorito. Criamos a rota de POST (que cria um novo filme), duas rotas de GET (uma para trazer todos os médicos e uma para trazer um médico dado o id), PUT (para alterar o médico), PATCH (para favoritar um médico) e DELETE (para deletar o médico). Nossas rotas estão todas desenvolvidas, porém estão rodando tudo localmente. Vamos subir para o Heroku?
+
+### Deployando nossa api no Heroku
+
+- To DO
 
 ### Acabamos, e agora?
 
@@ -640,10 +682,3 @@ Desenvolvemos todas as rotas necessárias para nosso produto do Jansen's Films. 
 Agora que nossa API está implementada, podemos e devemos exercitar! Será que podemos melhorar nosso código? Temos linhas se códigos repetidas que poderiam virar funções e serem reaproveitadas? Sempre há algo para melhorar, então fique a vontade para mexer e melhorar o código!
 
 Espero que tenha gostado da atividade e o segredo é praticar!!! Quanto mais exercícios fizer, melhor :) Abs e até mais!
-
----
-
-# Para saber mais
-
-Podemos ir um pouco além com alguns conteúdos extras. Para não misturar com o conteúdo proposto na aula, coloquei esses em um arquivo separado:
-https://github.com/jansenvanessa/jansensfilms-api-rest-nodejs/blob/master/ConteudoAdicional.md
