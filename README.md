@@ -3,7 +3,7 @@
     <p align="center">Meu Médico Favorito - Api Rest Nodejs<p>
 </h1>
 
-# Aula 1 - Banco de Dados
+# Aula 1 - Iniciando o projeto Meu Medico Favorito
 
 ![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
 
@@ -52,29 +52,11 @@ Na linha do *Heroku Cli* temos um comando que podemos copiar a colar o mesmo no 
 
 Ps: Quando rodar o comando do *Heroku Cli* ele pode abrir uma janela do browser e pedir para você se logar para seguir. Para isso basta se logar pelo browser conforme ele solicitar e depois continuar pelo terminal normalmente.
 
-### Criando tabela de banco de dados
-
-Como a listagem de médicos terá o formato: ```{ id, especialidade, nome, clinica, telefone, crm, favorito }```, deveremos criar a seguinte tabela no nosso terminal:
-
-```
-CREATE TABLE medicos (
-	id serial PRIMARY KEY,
-	especialidade VARCHAR ( 255 ),
-	nome  VARCHAR ( 255 ),
-	clinica VARCHAR ( 255 ),
-	telefone VARCHAR ( 20 ),
-	crm VARCHAR ( 20 ),
-	favorito Boolean
-);
-```
-
-![heroku_cli_create_database](https://i.imgur.com/dU46WzX.png)
-
 ### Banco de dados criado, e agora?
 
-Agora que temos nosso banco de dados criado, podemos desenvolver uma api para acessar esses dados, mas você lembra o que é uma api e como funciona? Vamos recordar!
+Agora que temos nosso banco de dados criado, podemos desenvolver uma api que vai criar a tabela de banco de dados, salvar novos dados, recuperá-los, enfim, utilizar todas essas informações para nosso produto. Mas você lembra o que é uma api e como funciona? Vamos recordar!
 
-# Aula 2 - API REST
+## O que é uma API Rest?
 
 Antigamente quando desenvolvíamos uma aplicação WEB, não existia uma separação clara do código de FrontEnd e Backend. O código para fazer as telas (Frontend), era em conjunto com o código de negócio (Backend), criando uma forte dependência entre ambos. Hoje ainda é utilizado esse modelo em alguns casos. É sempre importante avaliarmos o projeto que precisamos fazer, para decidirmos o melhor caminho para desenvolvê-lo.
 
@@ -137,13 +119,14 @@ Sendo assim precisaremos criar 5 rotas:
 | PUT    | Alterar informações do médico    		|
 | PATCH  | Marcar/Desmarcar médico como favorito 	|
 
-## Como criar uma nova API Nodejs?
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meumedicofavorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+# Aula 2 - Criando uma API Rest em Nodejs
+
+Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
-Com o terminal aberto na pasta "agendamentoclinico", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
+Com o terminal aberto na pasta "meu-medico-favorito", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
     
 Com isso um arquivo com o nome de package.json será criado. Esse arquivo é muito importante pois define que o nosso projeto como sendo Node.
 
@@ -157,9 +140,13 @@ O *--save* é necessário para especificar que esse pacote do express é uma dep
 
 Ao rodar a instalação do express, uma *pasta node_modules* com os pacotes do meu projeto será criada. Se reparar, dentro dessa pasta teremos uma pasta chamada “express”. Toda vez que você rodar o comando ``` npm install``` essa pasta node_modules será atualizada com as últimas atualizações conforme o que estiver configurado no arquivo *package.json*.
 
+### Instalando o Sequelize
+
+Como iremos utilizar um banco de dados para guardar as informações dos médicos, vamos precisar de uma lib que nos ajude a fazer a comunicação da api com nossa base de dados. Para isso utilizaremos a lib Sequelize que é um ORM(Object-Relational Mapper) para NodeJs que faz mapeamento de dados relacionais (tabelas, colunas e linhas) para objetos JavaScript. Iremos entender melhor quando formos utilizá-lo, mas nesse momento é importante instalarmos essa biblioteca por meio do comando ```npm install --save sequelize``` e também o driver do postgres por meio do comando ```npm install --save pg pg-hstore``` . Com isso podemos notar que se formos no nosso arquivo *package.json* nossas novas libs estarão lá.
+
 ### Criando o arquivo .gitignore
 
-Devemos criar na raíz do "jansensfilmes" o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
+Devemos criar na raíz do "meu-medico-favorito" o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
 
 ### Criando a estrutura da nossa API
 
@@ -170,13 +157,14 @@ Primeiramente, iremos criar uma pasta chamada “src” (de “source”) na rai
 - [x] routes - para armazenar as rotas
 
 ```
-jansensfilms
+meu-medico-favorito
 ├── src
 │   ├── controllers
 │   ├── models
 │   ├── routes
 ├── package.json
 ```
+
 ### Criando o servidor
 
 Deveremos criar dentro de *src/* um arquivo chamado *app.js*. Nesse arquivo faremos as configurações da nossa aplicação. Inicializaremos configuraremos a mesma para utilizar o express. Nesse arquivo criaremos uma constante express que receberá o módulo express. Utilizaremos essa constante para configurar nossa aplicação:
@@ -198,11 +186,13 @@ app.use(function (req, res, next) {
     // se eu não faço isso, a requisição vai ficar travada aí.
 })
 
-module.exports = app
+module.exports = {
+	app
+}
 ```
 O *app.use* adiciona uma middleware na nossa aplicação. Por exemplo, quando fazemos ```app.use(express.json())```, estou dizendo que minha api irá trabalhar com json. Isso significa, por exemplo, que quando eu fizer um POST, minha api irá entender que vou receber um json.
 
-Criaremos agora, na raíz de "jansensfilms", um arquivo chamado “server.js” para configurarmos nosso servidor. Nesse arquivo criaremos uma constante *app* que receberá nossa aplicação express que criamos no arquivo *app.js*. No caso definimos a porta 3000 para o nosso servidor rodar quando for inicializado.
+Criaremos agora, na raíz de "meu-medico-favorito", um arquivo chamado “server.js” para configurarmos nosso servidor. Nesse arquivo criaremos uma constante *app* que receberá nossa aplicação express que criamos no arquivo *app.js*. No caso definimos a porta 3000 para o nosso servidor rodar quando for inicializado.
 
 ```server.js
 const app = require("./src/app")
@@ -236,6 +226,61 @@ Para não precisar ficar escrevendo ```nodemon server.js``` para inicializar o s
   }
 ```
 Dessa forma para inicializar o servidor, basta digitar ```npm start``` no terminal e pressionar enter, que o mesmo já chamará automaticamente o comando ```nodemon server.js```.
+
+### Configurando o banco de dados
+
+Como iremos utilizar um banco de dados para guardar os registros dos médicos, vamos precisar realizar essa conexão e para isso, como mencionado anteriormente, iremos utilizar o Sequelize. Para isso, vamos precisar resgatar nossa string de conexão do nosso banco de dados do Heroku por meio do link: https://data.heroku.com/
+
+Nesse deveremos clicar no nosso banco de dados listado e ir em *Settings* e clicar em *View Credentials...*. Na lista de informações disponíveis, temos a *URI* que é a string de conexão que iremos precisar utilizar para conectar nossa api a nossa base de dados. Porém, precisamos lembrar que qualquer um que tiver essa string de conexão conseguirá acessar nosso banco de dados e não é isso que queremos. Então devemos deixar nossa string de conexão em um lugar que não fique exposto para qualquer um no código e podemos fazer isso por meio de um arquivo de variáveis de ambiente.
+
+### Criando nosso arquivo .env
+
+Para termos um arquivo env e poder utilizá-lo na nossa api, vamos precisar instalar o *dotenv* por meio do comando ```npm install —-save dotenv```. Em seguida podemos criar um arquivo *.env* na raíz do nosso projeto. Nosso arquivo de configurações pode ter nossa string de conexão e qualquer outra informação que possa fazer sentido para facilitar a alteração, como por exemplo a porta da nossa api. Nosso arquivo então ficaria nesse formato:
+
+```.env
+API_PORT=3000
+DATABASE_URL=postgres://nossa-string-de-conexao-que-pegamos-no-heroku-data
+```
+Com as informações devidamente cadastradas, devemos fazer a aplicação carregá-las e podemos fazer isso no nosso arquivo *server.js* por meio da linha ```require('dotenv').config()```. Para passarmos a utilizar o nosso API_PORT do nosso arquivo, utilizaremos o comando ```process.env.API_PORT```:
+
+```server.js
+require('dotenv').config()
+const { app } = require("./src/app")
+const port = process.env.API_PORT
+
+app.listen(port, () => {
+    console.log(`Servidor está rodando na porta ${port}`)
+})
+```
+
+### Utilizando o Sequelize para conexão com o banco de dados
+
+Agora que já temos nossa string de conexão no nosso arquivo *.env* iremos utilizá-la para nos conectarmos a base de dados. Para isso iremos criar dentro da pasta *src* o arquivo *db.js* com o seguinte conteúdo:
+
+```db.js
+const { Sequelize } = require('sequelize');
+
+const database = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
+})
+
+database.authenticate()
+    .then(() => console.log('Banco de dados conectado com sucesso.'))
+    .catch(() => console.error('Não foi possível conectar ao banco de dados.', error))
+
+module.exports = {
+    database
+}
+```
+
+Para verificarmos se conseguimos realizar essa conexão, devemos subir nosso servidor por meio do ```npm start``` e visualizar as mensagens do terminal, informando se o banco de dados foi conectado com sucesso ou não.
 
 # Aula 3 - Vamos criar nossa primeira rota GET!
 
@@ -289,8 +334,10 @@ module.exports = app
 
 Agora com a rota desenvolvida, ao executarmos no browser *http://localhost:3000* não deverá mais apresentar o erro de GET.
 
+/////////// PAREI AQUI
 
-### Nova rota de GET para retornar os filmes
+
+### Nova rota de GET para retornar os médicos
 
 A empresa Jansen's Films acabou de te enviar uma base de dados de exemplo chamado *movies.json*. Essa contém uma listagem de filmes que deveremos trabalhar. Com a listagem em mãos, poderemos desenvolver uma rota GET que exibirá essa listagem toda vez que uma requisição para listar os filmes seja chamada:
 
