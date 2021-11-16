@@ -90,8 +90,8 @@ const deleteDoctor = async (req, res) => {
 }
 
 module.exports = {
-    getAllDoctors,
     createDoctor,
+    getAllDoctors,
     getDoctor,
     updateDoctor,
     updateFavorite,
