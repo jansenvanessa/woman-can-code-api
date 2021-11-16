@@ -146,7 +146,7 @@ Devemos criar na raíz do "meu-medico-favorito" o arquivo *.gitignore* e escreve
 Primeiramente, iremos criar uma pasta chamada “src” (de “source”) na raiz do nosso projeto, onde armazenaremos todos os códigos da aplicação. Dentro dessa, criaremos três pastas:
 
 - [x] controllers - para armazenar a lógica de controle da nossa api
-- [x] models - para armazenar os nosso modelos (ex: nossos filmes)
+- [x] models - para armazenar os nossos modelos (ex: nossos médicos)
 - [x] routes - para armazenar as rotas
 
 ```
@@ -615,7 +615,7 @@ Para testar, via Postman, a rota PUT que altera um médico, deveremos clicar em 
     "favorite": false
 }
 ```
-Ao clicar no botão *send*, se você passou o id de um médico que existe na listagem, o mesmo deverá ser retornado com a alteração feita na resposta. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado para ser atualizado.
+Ao clicar no botão *send*, se você passou o id de um médico que existe na listagem, o mesmo deverá ser retornado com a alteração feita na resposta. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o médico não foi encontrado para ser atualizado.
 
 ![test_put_postman](https://i.imgur.com/cfdeLFr.png)
 
@@ -623,7 +623,7 @@ Ao clicar no botão *send*, se você passou o id de um médico que existe na lis
 
 ### Criando a rota PATCH
 
-Precisamos criar uma rota para podermos favoritar e desfavoritar médicos. Deveremos então implementar uma rota de PATCH que deverá permitir realizar essa alteração de informação no atributo *favorite*. Para isso, no nosso arquivo de rotas de filmes (*routes/doctors.js*), deveremos incluir a seguinte rota:
+Precisamos criar uma rota para podermos favoritar e desfavoritar médicos. Deveremos então implementar uma rota de PATCH que deverá permitir realizar essa alteração de informação no atributo *favorite*. Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
 
 ```doctors.js
 router.patch("/:id/favorite", controller.updateFavorite)
@@ -657,7 +657,7 @@ module.exports = {
 
 ### Testando a rota PATCH via Postman
 
-Para testar, via Postman, a rota PATCH que altera a informação de favorito do médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PATCH* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente na lista). Deveremos então, passar a informação de que o filme foi assistido ou não para enviar junto na requisição. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Deveremos então informar o seguinte JSON:
+Para testar, via Postman, a rota PATCH que altera a informação de favorito do médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PATCH* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente na lista). Deveremos então, passar a informação de favorito ou não para enviar junto na requisição. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Deveremos então informar o seguinte JSON:
 
 ```
 {
