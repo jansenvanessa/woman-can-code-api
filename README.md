@@ -3,58 +3,7 @@
     <p align="center">Meu Médico Favorito - Api Rest Nodejs<p>
 </h1>
 
-# Aula 1 - Iniciando o projeto Meu Medico Favorito
-
-![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
-
-Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
-
-Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele. Com isso o paciente terá mais rápido acesso aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
-
-## Onde vamos guardar nossos dados?
-
-Para começar precisamos de um banco de dados para guardar a informação dos médicos para poder efetuar as buscas e favoritá-los, correto? Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação. Nele subiremos nossa aplicação quando tiver sido desenvolvida e também nosso banco de dados.
-
-### Criação de uma conta no Heroku
-
-Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.heroku.com/ e clique em *Sign up*. Em seguida preencha com seus dados e clique para criar uma conta gratuita. Possivelmente vai ser enviado um e-mail de confirmação que deve ser aberto para confirmar a conta e essa quando confirmada você poderá definir uma senha. Agora que você já possui uma conta ativada, login e senha, você pode acessar o https://dashboard.heroku.com . Ao fazer isso deverá aceitar os termos da plataforma para seguir e feito isso a tela abaixo deverá ser exibida:
-
-![heroku_welcome](https://i.imgur.com/15pAlkd.png)
-
-### Criação de uma aplicação no Heroku
-
-Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para isso vamos clicar em *Create new app* e definir um nome para nossa aplicação. O nome de uma aplicação deverá ser único, isso significa que ninguém mais pode ter uma aplicação com o mesmo nome que a sua. Para garantir isso, podemos utilizar como nome de aplicação *seunome-meu-medico-favorito* , substituindo *seunome* pelo seu nome e ao clicar em *Create app* a aplicação será criada para podermos trabalhar:
-
-![new_app](https://i.imgur.com/YInBBRa.png)
-
-
-### Criando nosso banco de dados no Heroku
-
-Com a aplicação criada, clique no menu, conforme imagem abaixo, e escolha a opção *Data*:
-
-![data](https://i.imgur.com/48fkRiP.png)
-
-Ao fazer isso você será direcionada para o link https://data.heroku.com/ , onde poderá criar um banco de dados Postgres clicando em *Create One*:
-
-![data_postgres](https://i.imgur.com/GrhUiUU.png)
-
-Ao clicar para criar um banco de dados Postgres irá abrir uma janela sobre o Heroku Postgres e nessa, na lateral direita, você deverá clicar em *Install Heroku Postgres*. Ao fazer isso, ele abrirá uma janela solicitando o nome da aplicação onde quer instalar o Heroku Postgres e você deverá informar o nome da aplicação que você criou (ex: *seunome-meu-medico-favorito*) e feito isso deverá clicar em *Submit Order Form*.
-
-![data_postgres_app](https://i.imgur.com/3f7Dt5k.png)
-
-### Conectando no nosso banco de dados
-
-Se formos novamente em https://data.heroku.com/ veremos que o banco de dados que criamos aparecerá listado. Ao clicar nele poderemos ver diversas informações a respeito e indo em *Settings* e então, dentro da sessão *Database Credentials* clicarmos em *View Credentials...* poderemos visualizar informações para nos conectarmos a nossa base de dados.
-
-Na linha do *Heroku Cli* temos um comando que podemos copiar a colar o mesmo no nosso terminal, para se conectar ao banco de dados via linha de comando. Exemplo:
-
-![heroku_cli](https://i.imgur.com/BK4U1qf.png)
-
-Ps: Quando rodar o comando do *Heroku Cli* ele pode abrir uma janela do browser e pedir para você se logar para seguir. Para isso basta se logar pelo browser conforme ele solicitar e depois continuar pelo terminal normalmente.
-
-### Banco de dados criado, e agora?
-
-Agora que temos nosso banco de dados criado, podemos desenvolver uma api que vai criar a tabela de banco de dados, salvar novos dados, recuperá-los, enfim, utilizar todas essas informações para nosso produto. Mas você lembra o que é uma api e como funciona? Vamos recordar!
+# Aula 1 (Terça) - Introdução a API Rest
 
 ## O que é uma API Rest?
 
@@ -99,7 +48,11 @@ Quando fazemos uma requisição na API (quando chamamos uma rota), como vamos sa
 
 Então na nossa API devemos informar o código ao responder as requisições feitas pelas rotas que desenvolvemos. Caso nossa resposta seja com sucesso, passamos então um status 200. Caso dê algum erro que foi ocasionado por responsabilidade do usuário, enviamos um erro 4xx. Por exemplo, se um usuário não tem permissão de acesso para chamar uma rota que criamos, devemos retornar para ele um status 401, que significa que ele não está autorizado. Porém caso dê algum erro que seja de responsabilidade da nossa API, poderemos retornar um status 500.
 
-## Rotas a desenvolver
+## Projeto Meu Médico Favorito
+
+![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
+
+Agora que recordamos o conceito de API Rest, podemos seguir para os próximos passos colocando em prática a teoria aprendida. Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele, sendo possível dessa maneira, o paciente ter um acesso mais rápido aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
 O novo produto deverá:
 
@@ -119,8 +72,52 @@ Sendo assim precisaremos criar 5 rotas:
 | PUT    | Alterar informações do médico    		|
 | PATCH  | Marcar/Desmarcar médico como favorito 	|
 
+## Por onde começar nosso projeto?
 
-# Aula 2 - Criando uma API Rest em Nodejs
+Como criamos essas rotas e onde vão ficar gravadas as informações do médico que iremos adicionar para então depois podermos favoritá-los? As rotas iremos criar através de um novo projeto em Nodejs, mas os dados dos médicos irão precisar ficar gravados em um banco de dados. Vamos iniciar então criando esse banco de dados?  Para isso iremos usar um banco de dados Postgres que ficará numa cloud, no caso escolhemos o Heroku para isso. Heroku é uma plataforma em nuvem como um serviço que suporta várias linguagens de programação. Nele subiremos nossa aplicação quando tiver sido desenvolvida e também nosso banco de dados.
+
+### Criação de uma conta no Heroku
+
+Para podermos utilizar o Heroku vamos precisar de uma conta. Vá em https://www.heroku.com/ e clique em *Sign up*. Em seguida preencha com seus dados e clique para criar uma conta gratuita. Possivelmente vai ser enviado um e-mail de confirmação que deve ser aberto para confirmar a conta e essa quando confirmada você poderá definir uma senha. Agora que você já possui uma conta ativada, login e senha, você pode acessar o https://dashboard.heroku.com . Ao fazer isso deverá aceitar os termos da plataforma para seguir e feito isso a tela abaixo deverá ser exibida:
+
+![heroku_welcome](https://i.imgur.com/15pAlkd.png)
+
+### Criação de uma aplicação no Heroku
+
+Para criar um banco de dados no Heroku, vamos precisar primeiramente criar uma aplicação. Para isso vamos clicar em *Create new app* e definir um nome para nossa aplicação. O nome de uma aplicação deverá ser único, isso significa que ninguém mais pode ter uma aplicação com o mesmo nome que a sua. Para garantir isso, podemos utilizar como nome de aplicação *seunome-meu-medico-favorito* , substituindo *seunome* pelo seu nome e ao clicar em *Create app* a aplicação será criada para podermos trabalhar:
+
+![new_app](https://i.imgur.com/YInBBRa.png)
+
+
+### Criando nosso banco de dados no Heroku
+
+Com a aplicação criada, clique no menu, conforme imagem abaixo, e escolha a opção *Data*:
+
+![data](https://i.imgur.com/48fkRiP.png)
+
+Ao fazer isso você será direcionada para o link https://data.heroku.com/ , onde poderá criar um banco de dados Postgres clicando em *Create One*:
+
+![data_postgres](https://i.imgur.com/GrhUiUU.png)
+
+Ao clicar para criar um banco de dados Postgres irá abrir uma janela sobre o Heroku Postgres e nessa, na lateral direita, você deverá clicar em *Install Heroku Postgres*. Ao fazer isso, ele abrirá uma janela solicitando o nome da aplicação onde quer instalar o Heroku Postgres e você deverá informar o nome da aplicação que você criou (ex: *seunome-meu-medico-favorito*) e feito isso deverá clicar em *Submit Order Form*.
+
+![data_postgres_app](https://i.imgur.com/3f7Dt5k.png)
+
+### Conectando no nosso banco de dados
+
+Se formos novamente em https://data.heroku.com/ veremos que o banco de dados que criamos aparecerá listado. Ao clicar nele poderemos ver diversas informações a respeito e indo em *Settings* e então, dentro da sessão *Database Credentials* clicarmos em *View Credentials...* poderemos visualizar informações para nos conectarmos a nossa base de dados.
+
+Na linha do *Heroku Cli* temos um comando que podemos copiar a colar o mesmo no nosso terminal, para se conectar ao banco de dados via linha de comando. Exemplo:
+
+![heroku_cli](https://i.imgur.com/BK4U1qf.png)
+
+Ps: Quando rodar o comando do *Heroku Cli* ele pode abrir uma janela do browser e pedir para você se logar para seguir. Para isso basta se logar pelo browser conforme ele solicitar e depois continuar pelo terminal normalmente.
+
+### Banco de dados criado, e agora?
+
+Agora que temos nosso banco de dados criado, podemos desenvolver a api que vai criar a tabela de banco de dados, salvar novos dados, recuperá-los, enfim, utilizar todas essas informações para nosso produto.
+
+# Aula 2 (Quarta) - Criando uma API Rest em Nodejs
 
 Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
@@ -139,10 +136,6 @@ Feito isso, precisaremos instalar o Express no nosso projeto, que é um framewor
 O *--save* é necessário para especificar que esse pacote do express é uma dependência da nossa aplicação e que o nosso projeto obrigatoriamente precisa dela para funcionar. Quando uma outra pessoa baixar seu projeto, ao instalar as dependências, esse pacote também será instalado. Isso porque quando você usa o --save, esse pacote é referenciado em “dependencies” no arquivo package.json. A sessão “ dependencies”, desse arquivo, lista justamente as dependências do nosso projeto.
 
 Ao rodar a instalação do express, uma *pasta node_modules* com os pacotes do meu projeto será criada. Se reparar, dentro dessa pasta teremos uma pasta chamada “express”. Toda vez que você rodar o comando ``` npm install``` essa pasta node_modules será atualizada com as últimas atualizações conforme o que estiver configurado no arquivo *package.json*.
-
-### Instalando o Sequelize
-
-Como iremos utilizar um banco de dados para guardar as informações dos médicos, vamos precisar de uma lib que nos ajude a fazer a comunicação da api com nossa base de dados. Para isso utilizaremos a lib Sequelize que é um ORM(Object-Relational Mapper) para NodeJs que faz mapeamento de dados relacionais (tabelas, colunas e linhas) para objetos JavaScript. Iremos entender melhor quando formos utilizá-lo, mas nesse momento é importante instalarmos essa biblioteca por meio do comando ```npm install --save sequelize``` e também o driver do postgres por meio do comando ```npm install --save pg pg-hstore``` . Com isso podemos notar que se formos no nosso arquivo *package.json* nossas novas libs estarão lá.
 
 ### Criando o arquivo .gitignore
 
@@ -229,7 +222,9 @@ Dessa forma para inicializar o servidor, basta digitar ```npm start``` no termin
 
 ### Configurando o banco de dados
 
-Como iremos utilizar um banco de dados para guardar os registros dos médicos, vamos precisar realizar essa conexão e para isso, como mencionado anteriormente, iremos utilizar o Sequelize. Para isso, vamos precisar resgatar nossa string de conexão do nosso banco de dados do Heroku por meio do link: https://data.heroku.com/
+Como iremos utilizar um banco de dados para guardar as informações dos médicos, vamos precisar de uma lib que nos ajude a fazer a comunicação da api com nossa base de dados. Para isso utilizaremos a lib Sequelize que é um ORM(Object-Relational Mapper) para NodeJs que faz mapeamento de dados relacionais (tabelas, colunas e linhas) para objetos JavaScript. Iremos entender melhor quando formos utilizá-lo, mas nesse momento é importante instalarmos essa biblioteca por meio do comando ```npm install --save sequelize``` e também o driver do postgres por meio do comando ```npm install --save pg pg-hstore``` . Com isso podemos notar que se formos no nosso arquivo *package.json* nossas novas libs estarão lá.
+
+Com o Sequelize instalado, poderemos realizar uma conexão com o nosso banco de dados que criamos no Heroku. Para isso, vamos precisar resgatar nossa string de conexão do nosso banco de dados por meio do link: https://data.heroku.com/
 
 Nesse deveremos clicar no nosso banco de dados listado e ir em *Settings* e clicar em *View Credentials...*. Na lista de informações disponíveis, temos a *URI* que é a string de conexão que iremos precisar utilizar para conectar nossa api a nossa base de dados. Porém, precisamos lembrar que qualquer um que tiver essa string de conexão conseguirá acessar nosso banco de dados e não é isso que queremos. Então devemos deixar nossa string de conexão em um lugar que não fique exposto para qualquer um no código e podemos fazer isso por meio de um arquivo de variáveis de ambiente.
 
@@ -252,6 +247,8 @@ app.listen(port, () => {
     console.log(`Servidor está rodando na porta ${port}`)
 })
 ```
+
+Devemos lembrar de adicionar nosso arquivo *.env* no arquivo *.gitignore* para o git nao trackeá-lo para commit.
 
 ### Utilizando o Sequelize para conexão com o banco de dados
 
@@ -282,7 +279,51 @@ module.exports = {
 
 Para verificarmos se conseguimos realizar essa conexão, devemos subir nosso servidor por meio do ```npm start``` e visualizar as mensagens do terminal, informando se o banco de dados foi conectado com sucesso ou não.
 
-# Aula 3 - Vamos criar nossa primeira rota GET!
+### Criando um Model do médico
+
+Legal, nos conectamos ao nosso banco de dados porém não há nada nele, nem uma tabela. Como fazemos para termos nossa tabela de médicos no nosso banco? Para isso podemos criar um Model, que nada mais é que uma abstração do que representa uma tabela no nosso banco de dados. Vamos entender melhor isso?
+
+Dentro da pasta *models* criaremos um arquivo chamado *Doctor.js* que terá o seguinte conteúdo:
+
+```Doctor.js
+const { Sequelize, DataTypes } = require('sequelize');
+const { database } = require("../db")
+
+const Doctor = database.define('Doctor', {
+    id: {
+        type: DataTypes.BIGINT,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING
+    },
+    crm: {
+        type: DataTypes.STRING
+    },
+    specialty: {
+        type: DataTypes.STRING
+    },
+    clinic: {
+        type: DataTypes.STRING
+    },
+    phone: {
+        type: DataTypes.STRING
+    },
+    favorite: {
+        type: DataTypes.BOOLEAN
+    }
+});
+
+Doctor.sync()
+
+module.exports = Doctor;
+```
+
+Repare que definimos todos os atributos que nossa tabela do banco de dados terá. Ao escrever a linha de código *Doctor.sync()* fazemos com que essa tabela seja criada na base de dados caso ela ainda não exista. Caso rodemos nosso servidor, poderemos reparar que nossa tabela Doctors foi criada. Se quisermos olhar nosso banco de dados pelo terminal, conforme já aprendemos e visualizarmos essa tabela, poderemos utilizar o comando *\dt* para listar todas as tabelas existentes e também utilizar o comando *select * from public."Doctors";* para vermos que não existe nenhuma linha nessa tabela.
+
+# Aula 3 (Quinta) - Vamos criar nossas primeiras rotas (POST e GET)!
 
 Com o projeto configurado e com o servidor rodando, caso a gente tente executar no browser *http://localhost:3000*, vamos receber a mensagem “Cannot GET”. Isso significa que o nosso servidor ainda não está habilitado a devolver uma resposta do método GET no endereço “/“. Isso tudo porque ainda não definimos nenhuma rota no nosso projeto.
 
@@ -334,389 +375,346 @@ module.exports = app
 
 Agora com a rota desenvolvida, ao executarmos no browser *http://localhost:3000* não deverá mais apresentar o erro de GET.
 
-/////////// PAREI AQUI
+### Criando a rota POST
 
-
-### Nova rota de GET para retornar os médicos
-
-A empresa Jansen's Films acabou de te enviar uma base de dados de exemplo chamado *movies.json*. Essa contém uma listagem de filmes que deveremos trabalhar. Com a listagem em mãos, poderemos desenvolver uma rota GET que exibirá essa listagem toda vez que uma requisição para listar os filmes seja chamada:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "Malévola",
-        "genre": "Aventura",
-        "synopsis": "Malévola, uma jovem de coração puro, vive em um pacífico reino na floresta (...)",
-        "watched": true
-    },
-    {
-        "id": 2,
-        "name": "Um sonho possível",
-        "genre": "Drama",
-        "synopsis": "Michael Oher é negro, pobre, grandalhão e calado. Ele foi abandonado pela mãe e agora (...)",
-        "watched": false
-    },
-    {
-        "id": 3,
-        "name": "Jogos Vorazes",
-        "genre": "Aventura",
-        "synopsis": "Num futuro distante, boa parte da população é controlada por um regime totalitário, que (...)",
-        "watched": false
-    }
-]
-```
-
-Para que nosso projeto fique organizado, iremos colocar o arquivo *movies.json* que você recebeu dentro da pasta *models*. Iremos, em seguida, na pasta *routes* e criaremos um arquivo chamado *movies.js*. Nesse, iremos armazenar todas as rotas referentes aos filmes. Nosso projeto deverá estar com a seguinte estrutura:
+Agora que o projeto está devidamente configurado, que tal criarmos uma rota de POST para criar alguns médicos na nossa base de dados que está vazia? 
+Para que nosso projeto fique organizado, na pasta *routes* criaremos um arquivo chamado *doctors.js*. Nesse, iremos armazenar todas as rotas referentes aos médicos. Nosso projeto deverá estar com a seguinte estrutura:
 
 ```
-jansensfilms
+meu-medico-favorito
 ├── src
 │   ├── controllers
 │   ├── models
-|       ├── movies.json
+|       ├── Doctor.js
 │   ├── routes
 │       ├── index.js
-│       ├── movies.js
+│       ├── doctors.js
 |   ├── app.js
+|   ├── db.js
+├── .env
+├── .gitignore
 ├── package.json
 ├── server.js
 ```
 
-Primeiramente, deveremos informar a nossa aplicação que iremos utilizar as rotas que iremos criar para os filmes. Para isso deveremos abrir a pasta *src* e editar o arquivo *app.js* 
+Primeiramente, deveremos informar a nossa aplicação que iremos utilizar esse arquivo *doctors.js* para as rotas que iremos criar para os médicos. Para isso deveremos abrir a pasta *src* e editar o arquivo *app.js* 
 
 ```app.js
-const movies = require("./routes/movies")
-app.use("/movies", movies)
+const doctors = require("./routes/doctors")
+app.use("/doctors", doctors)
 ```
 
-Estamos dizendo para a aplicação utilizar as rotas do arquivo *movies.js* e utilizar a rota "/movies" para executá-las. Isso significa que toda vez que você chamar *http://localhost:3000/movies*, as nossas rotas de movies serão chamadas. 
+Estamos então dizendo para a aplicação utilizar as rotas do arquivo *doctors.js* e utilizar a rota "/doctors" para executá-las. Isso significa que toda vez que você chamar *http://localhost:3000/doctors*, as nossas rotas de doctors serão chamadas. 
 
-Entretanto, ainda não escrevemos nenhuma rota. Para escrever nossa primeira rota que listará os filmes, deveremos abrir a pasta *routes* e editar o arquivo *movies.js*: 
+Entretanto, ainda não escrevemos nenhuma rota. Para escrever nossa primeira rota que criará um médico, deveremos abrir a pasta *routes* e editar o arquivo *doctors.js*: 
 
-```movies.js
+```doctors.js
 const express = require("express")
 const router = express.Router()
-const controller = require("../controllers/movieController")
+const controller = require("../controllers/doctorController")
 
-router.get("/", controller.getAllMovies)
+router.post("/", controller.createDoctor)
 
 module.exports = router;
 ```
 
-Nessa estamos dizendo que toda vez que for utilizado o verbo GET na chamada *http://localhost:3000/movies*, o *controller.getAllMovies* será executado. Mas que *controller.getAllMovies* é esse? Precisamos criar ele ainda, certo? Então vamos lá!
+Nessa estamos dizendo que toda vez que for utilizado o verbo POST na chamada *http://localhost:3000/doctors*, o *controller.createDoctor* será executado. Mas que *controller.createDoctor* é esse? Precisamos criar ele ainda, certo? Então vamos lá!
 
-Primeiramente deveremos criar nosso controller de filmes. Então na pasta *controllers* deveremos criar o arquivo *movieController.js*. Nesse, deveremos criar a função *getAllMovies* que estamos chamando na nossa rota de GET:
+Primeiramente deveremos criar nosso controller de médicos. Então na pasta *controllers* deveremos criar o arquivo *doctorController.js*. Nesse, deveremos criar a função *createDoctor* que estamos chamando na nossa rota de POST:
 
-```movieController.js
-const movies = require("../models/movies.json")
+```doctorController.js
+const Doctor = require("../models/Doctor")
 
-const getAllMovies = (req, res) => {
-    console.log(req.url)
-    res.status(200).send(movies)
+const createDoctor = async (req, res) => {
+    const { name, crm, specialty, clinic, phone, favorite } = req.body
+    try {
+        const doctor = await Doctor.create({ name, crm, specialty, clinic, phone, favorite });
+        console.log(`Medico ${doctor.name} criado`);
+        res.status(201).send(doctor)
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
 }
 
 module.exports = {
-    getAllMovies,
+    createDoctor,
 }
 ```
-Nesse arquivo atribuímos nosso json de filmes a uma constante que chamamos de "movies". Então ao chamar a função *getAllMovies* nós respondemos a requisição com o status 200, informando que deu tudo certo e enviando nosso json de filmes. Feito isso, nossa rota que lista todos os filmes está pronta!
 
-### Testando a rota GET no Frontend
+Dentro da função createDoctor, extraímos do corpo da requisição enviada pelo cliente (req.body), as informações do médico que iremos adicionar. Em sequência criamos um Doctor (model) com essas informações na nossa base de dados.
 
-As desenvolvedoras Frontend enviaram uma tela que elas desenvolveram para testarmos nossa rota de GET. O html delas chama nossa rota GET que lista os filmes. Para testarmos isso, deveremos rodar nosso servidor e abrir o arquivo *index.html* que foi enviado. O mesmo irá exibir os filmes contidos no nosso json de filmes.
-
-![front_end_filmes](https://i.imgur.com/Tgiqa31.png)
-
-### Testando a rota GET via Postman
-
-Entretanto, nós como desenvolvedoras backend, não iremos utilizar o front para ficar testando nossas rotas no momento de desenvolvimento. Usaremos uma ferramenta para isso, chamada Postman. Essa ferramenta permite testar serviços RESTful por meio do envio de requisições HTTP e da análise do seu retorno. Você pode salvar todas as suas collections e facilitar o seu dia-a-dia como pessoa desenvolvedora!
-
-Para testar nossa rota GET de listagem de todos os filmes no Postman, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *GET* e digitar *http://localhost:3000/movies*. Ao clicar no botão *send* o array de json com nossos filmes será exibido.
-
-![test_get_postman](https://i.imgur.com/Cby6pIZ.png)
-
-# Aula 4 - Rotas POST e GET by id
-
-### Criando a rota POST
-
-Para criar um novo filme na nossa listagem, precisaremos escrever uma rota de POST. Para isso no nosso arquivo de rotas de filmes (*routes/movies.js*), iremos incluir a seguinte rota:
-
-```movies.js
-router.post("/", controller.createMovie)
-```
-Nosso controller ainda não possui a função createMovie que nossa rota está chamando. Então no arquivo *controllers/movieController.js* deveremos implementar a função com o código abaixo:
-
-```
-const fs = require("fs")
-
-const createMovie = (req, res) => {
-    const { id, name, genre, synopsis, watched } = req.body
-    movies.push({ id, name, genre, synopsis, watched })
-    fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) { // gravando novo filme no array de filmes
-        if (err) {
-            res.status(500).send({ message: err })
-        } else {
-            console.log("Arquivo atualizado com sucesso!")
-            const movieFound = movies.find(movie => movie.id == id) // recupero o filme que foi criei no array de filmes      
-            res.status(200).send(movieFound)
-        }
-    })
-}
-
-module.exports = {
-    createMovie,
-    getAllMovies,
-}
-```
-De cara, na primeira linha que escrevemos, estamos importando uma biblioteca chamada fs. Essa biblioteca permite que você trabalhe com o sistema de arquivos em seu computador. Precisamos dela para escrever um novo filme no nosso arquivo *movies.json*. Entretanto, antes de utilizá-la, precisamos instalá-la na nossa aplicação. Para isso é necessário rodar no terminal o comando ```npm install fs --save```
-
-Em seguida, dentro da função createMovie, extraímos do corpo da requisição enviada pelo cliente (req.body), as informações do filme que iremos adicionar. Em sequência adicionamos nossas informações no array de filmes (nossa listagem de filmes). Logo depois atualizamos nosso arquivo movies.json com o array de filmes com o filme que adicionamos.
-
-Dando algum erro, devolveremos o status 500 com a mensagem de erro. Caso dê certo, devolveremos o status 200, com o filme que adicionamos e gravamos no arquivo *movies.json*.
+Dando algum erro, devolveremos o status 500 com a mensagem de erro. Caso dê certo, devolveremos o status 201, com o médico que adicionamos. Feito isso, nossa rota que grava um médico está pronta e poderemos testá-la.
 
 ### Testando a rota POST via Postman
 
-Para testar via Postman, a rota POST que cria um novo filme na listagem filmes, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *POST* e digitar *http://localhost:3000/movies*. Deveremos então, passar a informação do novo filme que iremos adicionar. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Isso significa que estamos definindo que iremos enviar um JSON para nossa API quando enviarmos a requisição. Deveremos então informar o seguinte JSON:
+Para testarmos nossa rota usaremos uma ferramenta chamada Postman. Essa ferramenta permite testar serviços RESTful por meio do envio de requisições HTTP e da análise do seu retorno. Você pode salvar todas as suas collections e facilitar o seu dia-a-dia como pessoa desenvolvedora!
+
+Para testar via Postman, a rota POST que cria um novo médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *POST* e digitar *http://localhost:3000/doctors*. Deveremos então, passar a informação do novo médico que iremos adicionar. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Isso significa que estamos definindo que iremos enviar um JSON para nossa API quando enviarmos a requisição. Deveremos então informar o seguinte JSON:
 
 ```
 {
-    "id": 4,
-    "name": "The Old Guard",
-    "genre": "Ação",
-    "synopsis": "The Old Guard é um filme de ação e ficção científica de super-heróis americano de 2020 dirigido por Gina (...)",
-    "watched": false
+    "name": "Meredith Grey",
+    "crm" : "123456-SP",
+    "specialty": "Cirurgia",
+    "clinic": "Seattle Grace Hospital",
+    "phone": "11991122334",
+    "favorite": false
 }
 ```
 
-Ao clicar no botão *send*, enviaremos nosso novo filme para ser criado na nossa API. Dando certo, o filme que enviamos será retornado em tela para a gente.
+Ao clicar no botão *send*, enviaremos nosso novo médico para ser criado na nossa API. Dando certo, o médico que enviamos será retornado em tela para a gente e receberemos o status 201. Podemos então criar mais alguns médicos para termos nossa base de dados populada.
 
-![test_post_postman](https://i.imgur.com/Yq3otnK.png)
+![test_post_postman](https://i.imgur.com/h9RHMgY.png)
+
+Agora que criamos nossos médicos que tal criarmos uma rota que lista todos os médicos para podermos visualizá-los?
+
+### Nova rota de GET para retornar os médicos
+
+Para podermos visualizar os médicos existentes na nossa tabela de médicos, poderemos desenvolver uma rota GET que listará os médicos toda vez que uma requisição para listá-los seja chamada. Para escrever nossa rota que listará os médicos deveremos abrir a pasta routes e editar o arquivo doctors.js:
+
+```doctors.js
+const express = require("express")
+const router = express.Router()
+const controller = require("../controllers/doctorController")
+
+router.post("/", controller.createDoctor)
+router.get("/", controller.getAllDoctors)
+
+module.exports = router
+```
+
+Nessa estamos dizendo que toda vez que for utilizado o verbo GET na chamada http://localhost:3000/doctors, o controller.getAllDoctors será executado. Mas ainda não temos essa função *getAllDoctors* no nosso controller, então vamos criá-la! No arquivo *doctorController* deveremos criar a função:
+
+```doctorController.js
+const getAllDoctors = async (req, res) => {
+    const favorite = req.query.favorite
+    try {
+        const where = favorite ? { where: { favorite } } : {}
+        const doctors = await Doctor.findAll(where)
+        if (doctors && doctors.length > 0) {
+            res.status(200).send(doctors)
+        } else {
+            res.status(204).send()
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
+
+module.exports = {
+    createDoctor,
+    getAllDoctors,
+}
+```
+
+Dentro da função getAllDoctors, extraímos do filtro da requisição enviada pelo cliente (req.query.favorite), com a informação de se queremos trazer os médicos favoritos ou os não favoritos quando informado. Caso não passemos esse filtro *favorite*, traremos todos os médicos, independente se é favoritado ou não.
+
+Dando algum erro, devolveremos o status 500 com a mensagem de erro. Caso dê certo, existindo médicos para retornar, devolveremos o status 200 com a listagem de médicos desejada, senão status 204 informando que é um retorno vazio.
+
+Vamos entender melhor como funciona essa rota testando?
+
+### Testando a rota GET via Postman
+
+Para testar nossa rota GET de listagem de todos os médicos no Postman, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *GET* e digitar *http://localhost:3000/doctors*. Ao clicar no botão *send* o array de json com nossos médicos será exibido.
+
+![test_get_postman](https://i.imgur.com/ddQkTFY.png)
+
+Caso queiramos utilizar nosso filtro para trazer os médicos favoritos ou os médicos não favoritos, basta acrescentar *?favorite=true* ou *?favorite=false* ao final da url. Exemplo: *http://localhost:3000/doctors?favorite=true*
+
+# Aula 4 (Sexta) - Rotas GET by id e PUT
 
 ### Criando a rota GET (by id)
 
-Para verificarmos nosso novo filme criado, o buscando pelo id 4 (o id do filme que criamos). Será necessário criar uma nova rota de GET que trará o filme, dado um id. No caso queremos que quando chamarmos a rota GET *http://localhost:3000/movies/4* nosso filme que acabamos de criar seja retornado.
+Para verificarmos nosso médico criado, o buscando pelo id 1 (o id do médico que criamos). Será necessário criar uma nova rota de GET que trará o médico, dado um id. No caso queremos que quando chamarmos a rota GET *http://localhost:3000/doctors/1* nosso médico que criamos seja retornado.
 
-Para isso, no nosso arquivo de rotas de filmes (*routes/movies.js*), deveremos incluir a seguinte rota:
+Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
 
-```movies.js
-router.get("/:id", controller.getMovie)
+```doctors.js
+router.get("/:id", controller.getDoctor)
 ```
-Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/movies/4* ). Mais uma vez nosso controller ainda não possui a função que estamos chamando. Então no arquivo *controllers/movieController.js* deveremos implementar a função getMovie com o código abaixo:
+Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/doctors/1* ). Mais uma vez nosso controller ainda não possui a função que estamos chamando. Então no arquivo *controllers/doctorController.js* deveremos implementar a função getDoctor com o código abaixo:
 
-```movieController.js
-const getMovie = (req, res) => {
-    const movieId = req.params.id
-    const movieFound = movies.find((movie) => movie.id == movieId)
-    if (movieFound) {
-        res.status(200).send(movieFound)
-    } else {
-        res.status(404).send({ message: "Filme não encontrado" })
+```doctorController.js
+const getDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    try {
+        const doctor = await Doctor.findByPk({
+            where: { id: doctorId }
+        });
+        if (doctor) {
+            res.status(200).send(doctor)
+        } else {
+            res.status(404).send({ message: `Médico não encontrado com o id ${doctorId}` })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
 }
 
 module.exports = {
-    createMovie,
-    getMovie,
-    getAllMovies,
+    createDoctor,
+    getAllDoctors,
+    getDoctor
 }
 ```
 
-Nesse, atribuítmos o valor do parametro id (req.params.id) a constante *movieId*. Com isso sabemos o id que foi passado na requisição. Em seguida percorremos o array de filmes, verificando o id no filme (movie.id == movieId). Ao encontrar o filme com o id passado, o mesmo é atribuído a constante "movieFound". Se o "movieFound" tiver valor, em outras palavras, se o filme for encontrado por id, iremos responder a requisição com status 200 e enviaremos na resposta o filme encontrado. Senão, se ele não for encontrado, retornaremos um status 404 (NOT FOUND) na requisição, informando que o mesmo não foi encontrado. 
+Nesse, atribuítmos o valor do parametro id (req.params.id) a constante *doctorId*. Com isso sabemos o id que foi passado na requisição. Em seguida buscamos na base de dados um médico com o id informado e como id é a chave primária, podemos utilizar o *Doctor.findByPk*. Ao encontrar o médico com o id passado, o mesmo é atribuído a constante "doctor". Se o "doctor" tiver valor, em outras palavras, se o médico foi encontrado pelo id, iremos responder a requisição com status 200 e enviaremos na resposta o médico encontrado. Senão, se ele não for encontrado, retornaremos um status 404 (NOT FOUND) na requisição, informando que o mesmo não foi encontrado. 
 
 ### Testando a rota GET by id via Postman
 
-Para testar nossa rota GET passando o id como parâmetro, via Postman, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *GET* e digitar *http://localhost:3000/movies/4* (escolhi o id 4 mas você pode testar com outros ids). Ao clicar no botão *send*, se você passou o id de um filme que existe na listagem, o mesmo deverá ser exibido como resposta. Mas caso você passe um id de um filme que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado.
+Para testar nossa rota GET passando o id como parâmetro, via Postman, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *GET* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas você pode testar com outros ids). Ao clicar no botão *send*, se você passou o id de um médico que existe na base de dados, o mesmo deverá ser exibido como resposta. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o médico não foi encontrado.
 
-![test_get_id_postman](https://i.imgur.com/H1d2lHT.png)
-
-# Aula 5 - Rota PUT, PATCH, DELETE e publicação da API e Front
+![test_get_id_postman](https://i.imgur.com/DW3Ubfr.png)
 
 ### Criando a rota PUT
 
-Para alterarmos um filme existente no nosso arquivo *movies.json*, Deveremos implementar uma rota de PUT que deverá permitir realizar essa alteração. Para isso, no nosso arquivo de rotas de filmes (*routes/movies.js*), deveremos incluir a seguinte rota:
+Para alterarmos um médico existente na nossa tabela do banco, deveremos implementar uma rota de PUT que deverá permitir realizar essa alteração. Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
 
-```movies.js
-router.put("/:id", controller.updateMovie)
+```doctors.js
+router.put("/:id", controller.updateDoctor)
 ```
-Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/movies/4* ). Deveremos ir então no arquivo *controllers/movieController.js* para implementar a função *updateMovie*, que ainda não existe, com o código abaixo:
+Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/doctors/1* ). Deveremos ir então no arquivo *controllers/doctorController.js* para implementar a função *updateDoctor*, que ainda não existe, com o código abaixo:
 
-```movieController.js
-const updateMovie = (req, res) => {
+```doctorController.js
+const updateDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    const { name, crm, specialty, clinic, phone, favorite } = req.body
     try {
-        const movieId = req.params.id
-        const movieToUpdate = req.body //Pego o corpo da requisição com as alterações 
-
-        const movieFound = movies.find(movie => movie.id == movieId) // separo o filme que irei atualizar      
-        const movieIndex = movies.indexOf(movieFound) // separo o indice do filme no array de filmes
-
-        if (movieIndex >= 0) { // verifico se o filme existe no array de filmes
-            movies.splice(movieIndex, 1, movieToUpdate) //busco no array o filme, excluo o registro antigo e substituo pelo novo 
+        const rowsUpdated = await Doctor.update({ name, crm, specialty, clinic, phone, favorite }, {
+            where: { id: doctorId }
+        });
+        if (rowsUpdated && rowsUpdated > 0) {
+            res.status(200).send({ message: `${rowsUpdated[0]} medico(s) atualizado(s)` })
         } else {
-            res.status(404).send({ message: "Filme não encontrado para ser atualizado" })
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para atualizar` })
         }
-
-        fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) { // gravo meu json de filmes atualizado
-            if (err) {
-                res.status(500).send({ message: err }) // caso dê erro retorno status 500
-            } else {
-                console.log("Arquivo de filmes atualizado com sucesso!")
-                const movieUpdated = movies.find(movie => movie.id == movieId) // separo o filme que modifiquei no array
-                res.status(200).send(movieUpdated) // envio o filme modificado como resposta
-            }
-        })
-    } catch (err) {
-        res.status(500).send({ message: err }) // caso dê erro retorno status 500
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
 }
 
 module.exports = {
-    createMovie,
-    updateMovie,
-    getMovie,
-    getAllMovies,
+    createDoctor,
+    getAllDoctors,
+    getDoctor,
+    updateDoctor
 }
 ```
 
 ### Testando a rota PUT via Postman
 
-Para testar, via Postman, a rota PUT que altera um filme na listagem filmes, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PUT* e digitar *http://localhost:3000/movies/4* (escolhi o id 4 mas poderia ter escolhido outro id qualquer existente na lista). Deveremos então, passar a nova informação filme que iremos atualizar. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Isso significa que estamos definindo que iremos enviar um JSON para nossa API quando enviarmos a requisição. Deveremos então informar o seguinte JSON:
+Para testar, via Postman, a rota PUT que altera um médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PUT* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente). Deveremos então, passar a nova informação do médico que iremos atualizar. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Isso significa que estamos definindo que iremos enviar um JSON para nossa API quando enviarmos a requisição. Deveremos então informar o seguinte JSON:
 
 ```
 {
-    "id": 4,
-    "name": "The Old Guard",
-    "genre": "Ficção científica",
-    "synopsis": "The Old Guard é um filme de ação e ficção científica de super-heróis americano de 2020 dirigido por Gina (...)",
-    "watched": false
+    "name": "Meredith Grey",
+    "crm" : "654321-SP",
+    "specialty": "Cirurgia Médica",
+    "clinic": "Seattle Grace Hospital LTDA",
+    "phone": "11991122336",
+    "favorite": false
 }
 ```
-Ao clicar no botão *send*, se você passou o id de um filme que existe na listagem, o mesmo deverá ser retornado com a alteração feita na resposta. Mas caso você passe um id de um filme que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado para ser atualizado.
+Ao clicar no botão *send*, se você passou o id de um médico que existe na listagem, o mesmo deverá ser retornado com a alteração feita na resposta. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado para ser atualizado.
 
-![test_put_postman](https://i.imgur.com/t0PokjX.png)
+![test_put_postman](https://i.imgur.com/cfdeLFr.png)
+
+# Aula 5 (Sábado) - Rota PATCH, DELETE e publicação da API e Front
 
 ### Criando a rota PATCH
 
-Precisamos criar uma rota para alterar apenas o status de assistido do nosso filme. Com isso poderemos informar se ele foi assistido ou não. Deveremos então implementar uma rota de PATCH que deverá permitir realizar essa alteração. Para isso, no nosso arquivo de rotas de filmes (*routes/movies.js*), deveremos incluir a seguinte rota:
+Precisamos criar uma rota para podermos favoritar e desfavoritar médicos. Deveremos então implementar uma rota de PATCH que deverá permitir realizar essa alteração de informação no atributo *favorite*. Para isso, no nosso arquivo de rotas de filmes (*routes/doctors.js*), deveremos incluir a seguinte rota:
 
-```movies.js
-router.patch("/:id/watched", controller.updateWatchedStatus)
+```doctors.js
+router.patch("/:id/favorite", controller.updateFavorite)
 ```
-Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/movies/4/watched* ). Deveremos ir então no arquivo *controllers/movieController.js* para implementar a função *updateWatchedStatus*, que ainda não existe, com o código abaixo:
+Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/doctors/1/favorite* ). Deveremos ir então no arquivo *controllers/doctorController.js* para implementar a função *updateFavorite*, que ainda não existe, com o código abaixo:
 
-```movieController.js
-const updateWatchedStatus = (req, res) => {
+```doctorController.js
+const updateFavorite = async (req, res) => {
+    const doctorId = req.params.id
+    const favorite = req.body.favorite
     try {
-        const movieId = req.params.id // pego a informação do id no parametro da requisição
-        const watched = req.body.watched // pego a informação de watched no corpo da requisição. Ele terá valor true ou false, dependendo do que tiver sido passado
-
-        const movieToUpdate = movies.find(movie => movie.id == movieId) // separo o filme que irei mudar o status
-        const movieIndex = movies.indexOf(movieToUpdate) // identifico o índice do filme no meu array
-
-        if (movieIndex >= 0) { // verifico se o filme existe no array de filmes
-            movieToUpdate.watched = watched //atualizo o objeto com o novo status informando se foi assistido ou não
-            movies.splice(movieIndex, 1, movieToUpdate) // removo o filme pelo índice substituindo pelo novo
+        const rowsUpdated = await Doctor.update({ favorite }, { where: { id: doctorId } });
+        if (rowsUpdated && rowsUpdated > 0) {
+            res.status(200).send({ message: `${rowsUpdated[0]} medico(s) com informação de favorito atualizada com sucesso` })
         } else {
-            res.status(404).send({ message: "Filme não encontrado para informar se foi assistido ou não" })
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para atualizar informação de favorito` })
         }
-
-        fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) { // gravo meu json de filmes atualizado
-            if (err) {
-                res.status(500).send({ message: err })
-            } else {
-                console.log("Arquivo atualizado com sucesso!")
-                const movieUpdated = movies.find((movie) => movie.id == movieId) // separo o filme que modifiquei no array
-                res.status(200).send(movieUpdated) // envio o filme modificado como resposta
-            }
-        })
-    } catch (err) {
-        res.status(500).send({ message: err })
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
 }
 
 module.exports = {
-    createMovie,
-    updateMovie,
-    updateWatchedStatus,
-    getMovie,
-    getAllMovies,
+    createDoctor,
+    getAllDoctors,
+    getDoctor,
+    updateDoctor,
+    updateFavorite
 }
 ```
 
 ### Testando a rota PATCH via Postman
 
-Para testar, via Postman, a rota PATCH que altera o status de assistido do filme, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PATCH* e digitar *http://localhost:3000/movies/4* (escolhi o id 4 mas poderia ter escolhido outro id qualquer existente na lista). Deveremos então, passar a informação de que o filme foi assistido ou não para enviar junto na requisição. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Deveremos então informar o seguinte JSON:
+Para testar, via Postman, a rota PATCH que altera a informação de favorito do médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *PATCH* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente na lista). Deveremos então, passar a informação de que o filme foi assistido ou não para enviar junto na requisição. Para isso deveremos clicar em *body* e clicar em *raw*. Logo após trocar a combobox "text" para *JSON*. Deveremos então informar o seguinte JSON:
 
 ```
 {
-	"watched" : true
+    "favorite": true
 }
 ```
-Ao clicar no botão *send*, se você passou o id de um filme que existe na listagem, o mesmo deverá ser retornado com a alteração de status feita na resposta. Mas caso você passe um id de um filme que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado para ser atualizado.
+Ao clicar no botão *send*, se você passou o id de um médico que existe na listagem, o mesmo deverá ser retornado com a alteração de favorito feita na resposta. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o médico não foi encontrado para ser atualizado.
 
-![test_patch_postman](https://i.imgur.com/LGqeSqd.png)
-
-# Projeto API Nodejs "Meu Médico Favorito" - Aula 6
+![test_patch_postman](https://i.imgur.com/FpnuKM0.png)
 
 ## Criando a rota de DELETE
 
-Precisamos criar uma rota para poder deletar um filme, dado um id. Deveremos então implementar uma rota de DELETE que deverá permitir deletar o filme da nossa listagem. Para isso, no nosso arquivo de rotas de filmes (*routes/movies.js*), deveremos incluir a seguinte rota:
+Precisamos criar uma rota para poder deletar um médico, dado um id. Deveremos então implementar uma rota de DELETE que deverá permitir deletar o médico da nossa tabela do banco de dados. Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
 
-```movies.js
-router.delete("/:id", controller.deleteMovie)
+```doctors.js
+router.delete("/:id", controller.deleteDoctor)
 ```
-Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/movies/4* ). Deveremos ir então no arquivo *controllers/movieController.js* para implementar a função *deleteMovie*, que ainda não existe, com o código abaixo:
+Nessa rota informamos que será passado um valor de parâmetro na nossa rota que será o parâmetro id (ex: *http://localhost:3000/doctors/1* ). Deveremos ir então no arquivo *controllers/doctorController.js* para implementar a função *deleteDoctor*, que ainda não existe, com o código abaixo:
 
-```movieController.js
-const deleteMovie = (req, res) => {
+```doctorController.js
+const deleteDoctor = async (req, res) => {
+    const doctorId = req.params.id
     try {
-        const movieId = req.params.id
-        const movieFound = movies.find(movie => movie.id == movieId) // encontro o filme pelo id
-        const movieIndex = movies.indexOf(movieFound) // identifico o índice do filme no meu array
-
-        if (movieIndex >= 0) { // verifico se o filme existe no array de filmes
-            movies.splice(movieIndex, 1) // removo o filme pelo índice
+        const rowsDeleted = await Doctor.destroy({ where: { id: doctorId } });
+        if (rowsDeleted) {
+            res.status(200).send({ message: `${rowsDeleted[0]} medico(s) deletado(s) com sucesso` })
         } else {
-            res.status(404).send({ message: "Filme não encontrado para ser deletado" })
+            res.status(404).send({ message: `Medico com id ${doctorId} não encontrado para deletar` })
         }
-
-        fs.writeFile("./src/models/movies.json", JSON.stringify(movies), 'utf8', function (err) { // gravo meu array de filmes sem o filme que deletei
-            if (err) {
-                res.status(500).send({ message: err })
-            } else {
-                console.log("Filme deletado com sucesso do arquivo!")
-                res.sendStatus(204)
-            }
-        })
-    } catch (err) {
-        console.log(err)
-        res.status(500).send({ message: "Erro ao deletar o filme" })
+    } catch (error) {
+        res.status(500).send({ message: error.message })
     }
 }
 
 module.exports = {
-    createMovie,
-    deleteMovie,
-    updateMovie,
-    updateWatchedStatus,
-    getMovie,
-    getAllMovies,
+    createDoctor,
+    getAllDoctors,
+    getDoctor,
+    updateDoctor,
+    updateFavorite,
+    deleteDoctor
 }
 ```
 
 ### Testando a rota DELETE via Postman
 
-Para testar, via Postman, a rota DELETE que deleta um filme, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *DELETE* e digitar *http://localhost:3000/movies/4* (escolhi o id 4 mas poderia ter escolhido outro id qualquer existente na lista). Ao clicar no botão *send*, se você passou o id de um filme que existe na listagem, deverá ser retornado um 204 NO CONTENT da API, informando que ok deu tudo certo, não tem nada para retornar. Mas caso você passe um id de um filme que não existe, ele deve retornar um status 404 informando que o filme não foi encontrado para ser deletado.
+Para testar, via Postman, a rota DELETE que deleta um médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *DELETE* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente na lista). Ao clicar no botão *send*, se você passou o id de um médico que existe, deverá ser retornado um 200, informando que ok deu tudo certo, não tem nada para retornar. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o médico não foi encontrado para ser deletado.
 
-![test_delete_postman](https://i.imgur.com/XQshRFn.png)
+![test_delete_postman](https://i.imgur.com/u28V8zM.png)
 
 ### API Pronta!
 
-Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favorito. Criamos a rota de POST (que cria um novo filme), duas rotas de GET (uma para trazer todos os médicos e uma para trazer um médico dado o id), PUT (para alterar o médico), PATCH (para favoritar um médico) e DELETE (para deletar o médico). Nossas rotas estão todas desenvolvidas, porém estão rodando tudo localmente. Vamos subir para o Heroku?
+Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favorito. Criamos a rota de POST (que cria um novo médico), duas rotas de GET (uma para trazer todos os médicos (favoritos ou não) e uma para trazer um médico dado o id), PUT (para alterar o médico), PATCH (para favoritar um médico) e DELETE (para deletar o médico). Nossas rotas estão todas desenvolvidas, porém estão rodando tudo localmente. Vamos subir para o Heroku?
 
 ### Deployando nossa api no Heroku
 
-- To DO
+- TO DO
 
 ### Acabamos, e agora?
 
