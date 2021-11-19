@@ -230,7 +230,7 @@ Nesse deveremos clicar no nosso banco de dados listado e ir em *Settings* e clic
 
 ### Criando nosso arquivo .env
 
-Para termos um arquivo env e poder utilizá-lo na nossa api, vamos precisar instalar o *dotenv* por meio do comando ```npm install —-save dotenv```. Em seguida podemos criar um arquivo *.env* na raíz do nosso projeto. Nosso arquivo de configurações pode ter nossa string de conexão e qualquer outra informação que possa fazer sentido para facilitar a alteração, como por exemplo a porta da nossa api. Nosso arquivo então ficaria nesse formato:
+Para termos um arquivo env e poder utilizá-lo na nossa api, vamos precisar instalar o *dotenv* por meio do comando ```npm install --save dotenv```. Em seguida podemos criar um arquivo *.env* na raíz do nosso projeto. Nosso arquivo de configurações pode ter nossa string de conexão e qualquer outra informação que possa fazer sentido para facilitar a alteração, como por exemplo a porta da nossa api. Nosso arquivo então ficaria nesse formato:
 
 ```.env
 API_PORT=3000
