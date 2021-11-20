@@ -5,121 +5,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
   <title>Front - Exemplo</title>
-  <style>
-    body {
-      max-width: 1120px;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: "Roboto", sans-serif;
-    }
-
-    #tabela-lista {
-      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    #tabela-lista td,
-    #tabela-lista th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    #tabela-lista tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    #tabela-lista tr:hover {
-      background-color: #b382ba;
-    }
-
-    #tabela-lista th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: #7e459b;
-      color: white;
-    }
-
-    footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 50px;
-      background-color: #7e459b;
-      color: white;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #tabela-lista .selecionado {
-      background-color: #2eb82e !important;
-    }
-
-    #tabela-lista tr td:last-child {
-      background-color: #ffcc00;
-    }
-  </style>
+  
 </head>
 
 <body>
-  <table id="tabela-lista">
+  <header class="header">
+      <img src="dasa.svg" class="logo" alt="Dasa Logo">
+  </header>
+  <div id="content">
+    <img id="malvado" src="medico_favorito1.jpg" alt="medico malvado foto"/>
+
+<div class="container">
+    <h1> Meu Médico Favorito</h1>
+     <table id="tabela-lista">
+    </div>
+  
     <thead>
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th>Gênero</th>
-        <th>Sinopse</th>
-        <th>Visto?</th>
+        <th>CRM</th>
+        <th>Especialidade</th>
+        <th>Clínica</th>
+        <th>Telefone</th>
+        <th>Favorito</th>
+        <th>Excluir</th>
       </tr>
     </thead>
 
     <tbody id="tabela-lista-corpo"></tbody>
   </table>
-  <button> Teste </button>
 
-  <footer>Feito com ♥</footer>
+  <img id="favorito" src="medico_favorito2.jpg" alt="medico malvado foto"/>
+</div>
 
-  <script>
-    var objJson = [];
-
-    const URL = `http://localhost:3000/movies`;
-    fetch(URL)
-      .then((resposta) => resposta.json())
-      .then((data) => preencherDados(data))
-      .catch((erro) => console.error(erro));
-
-    var listing_table = document.getElementById("tabela-lista-corpo");
-
-    listing_table.innerHTML = "";
-
-    function preencherDados(lista) {
-      lista.forEach((element) => {
-        let linha = document.createElement("tr");
-        let itemDaLinhaId = document.createElement("td");
-        itemDaLinhaId.innerText = element.id;
-        let itemDaLinhaNome = document.createElement("td");
-        itemDaLinhaNome.innerText = element.name;
-        let itemDaLinhaOpcao = document.createElement("td");
-        itemDaLinhaOpcao.innerHTML = element.genre;
-        let itemDaLinhaSinopse = document.createElement("td");
-        itemDaLinhaSinopse.innerHTML = element.synopsis;
-        let itemDaLinhaVisto = document.createElement("td");
-        itemDaLinhaVisto.innerHTML = element.watched ? "Sim" : "Não";
-        if (element.watched) itemDaLinhaVisto.className = "selecionado";
-        linha.appendChild(itemDaLinhaId);
-        linha.appendChild(itemDaLinhaNome);
-        linha.appendChild(itemDaLinhaOpcao);
-        linha.appendChild(itemDaLinhaSinopse);
-        linha.appendChild(itemDaLinhaVisto);
-        listing_table.appendChild(linha);
-      });
-    }
-  </script>
+  <!-- <footer>Feito com ♥</footer> -->
+  <script src="js/doctors.js" type="text/javascript"></script>
 </body>
 
 </html>
