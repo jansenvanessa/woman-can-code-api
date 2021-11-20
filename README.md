@@ -558,7 +558,7 @@ module.exports = {
 }
 ```
 
-Nesse, atribuítmos o valor do parametro id (req.params.id) a constante *doctorId*. Com isso sabemos o id que foi passado na requisição. Em seguida buscamos na base de dados um médico com o id informado e como id é a chave primária, podemos utilizar o *Doctor.findOne*. Ao encontrar o médico com o id passado, o mesmo é atribuído a constante "doctor". Se o "doctor" tiver valor, em outras palavras, se o médico foi encontrado pelo id, iremos responder a requisição com status 200 e enviaremos na resposta o médico encontrado. Senão, se ele não for encontrado, retornaremos um status 404 (NOT FOUND) na requisição, informando que o mesmo não foi encontrado. 
+Nesse, atribuítmos o valor do parametro id (req.params.id) a constante *doctorId*. Com isso sabemos o id que foi passado na requisição. Em seguida buscamos na base de dados um médico com o id informado e como id é único, podemos utilizar o *Doctor.findOne*. Ao encontrar o médico com o id passado, o mesmo é atribuído a constante "doctor". Se o "doctor" tiver valor, em outras palavras, se o médico foi encontrado pelo id, iremos responder a requisição com status 200 e enviaremos na resposta o médico encontrado. Senão, se ele não for encontrado, retornaremos um status 404 (NOT FOUND) na requisição, informando que o mesmo não foi encontrado. 
 
 ### Testando a rota GET by id via Postman
 
