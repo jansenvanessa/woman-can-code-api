@@ -370,7 +370,9 @@ app.use(function (req, res, next) {
 
 app.use("/", index)
 
-module.exports = app
+module.exports = { 
+	app
+}
 ```
 
 Agora com a rota desenvolvida, ao executarmos no browser *http://localhost:3000* não deverá mais apresentar o erro de GET.
