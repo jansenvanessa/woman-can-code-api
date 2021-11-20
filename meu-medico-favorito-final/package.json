@@ -1,7 +1,7 @@
 {
   "name": "meumedicofavorito",
   "version": "1.0.0",
-  "description": "Minha api de filmes",
+  "description": "Minha api de medicos favoritos",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,6 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
