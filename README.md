@@ -179,6 +179,17 @@ app.use(function (req, res, next) {
     // se eu não faço isso, a requisição vai ficar travada aí.
 })
 
+// para que o front consiga utilizar as rotas que vamos criar precisamos dar essa permissão de acesso
+app.options("/*", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers")
+    res.header(
+        "Access-Control-Allow-Methods",
+        "PUT,POST,GET,DELETE,OPTIONS,PATCH"
+    );
+    res.send("send some thing whatever")
+})
+
 module.exports = {
 	app
 }
