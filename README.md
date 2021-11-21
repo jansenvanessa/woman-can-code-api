@@ -536,6 +536,10 @@ Para testar nossa rota GET de listagem de todos os médicos no Postman, deveremo
 
 Caso queiramos utilizar nosso filtro para trazer os médicos favoritos ou os médicos não favoritos, basta acrescentar *?favorite=true* ou *?favorite=false* ao final da url. Exemplo: *http://localhost:3000/doctors?favorite=true*
 
+### Visualizando lista de médicos no front
+
+Agora que temos nossa rota de listar os médicos podemos ir na pasta *frontend-exemplo* e abrir o arquivo *index.html* no navegador. Fazendo isso vamos conseguir ver nossos médicos listados! Isso acontece pois o código do frontend está chamando a rota GET que criamos, que legal né?
+
 # Aula 4 (Sexta) - Rotas GET by id e PUT
 
 ### Criando a rota GET (by id)
