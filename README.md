@@ -50,9 +50,11 @@ Então na nossa API devemos informar o código ao responder as requisições fei
 
 ## Projeto Meu Médico Favorito
 
+Agora que recordamos o conceito de API Rest, podemos seguir para os próximos passos colocando em prática a teoria aprendida. Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele, sendo possível dessa maneira, o paciente ter um acesso mais rápido aos médicos que mais gostou do atendimento.
+
 ![minion-doctor](https://i.imgur.com/3TLm0lH.png)
 
-Agora que recordamos o conceito de API Rest, podemos seguir para os próximos passos colocando em prática a teoria aprendida. Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele, sendo possível dessa maneira, o paciente ter um acesso mais rápido aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
+Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
 O novo produto deverá:
 
