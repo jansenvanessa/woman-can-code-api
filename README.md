@@ -121,11 +121,11 @@ Agora que temos nosso banco de dados criado, podemos desenvolver a api que vai c
 
 # Aula 2 (Quarta) - Criando uma API Rest em Nodejs
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+Para a construção do backend do nosso produto em Nodejs primeiro precisamos criar um novo repositório no Github (ex: meu-medico-favorito) e cloná-lo para nossa máquina. Feito isso, abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
-Com o terminal aberto na pasta "meu-medico-favorito", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
+Com o terminal aberto na raíz do nosso repositório, iremos iniciar nossa API Nodejs e para isso precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
     
 Com isso um arquivo com o nome de package.json será criado. Esse arquivo é muito importante pois define que o nosso projeto como sendo Node.
 
@@ -141,7 +141,7 @@ Ao rodar a instalação do express, uma *pasta node_modules* com os pacotes do m
 
 ### Criando o arquivo .gitignore
 
-Devemos criar na raíz do "meu-medico-favorito" o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
+Devemos criar na raíz do repositório o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
 
 ### Criando a estrutura da nossa API
 
@@ -246,15 +246,15 @@ Nesse deveremos clicar no nosso banco de dados listado e ir em *Settings* e clic
 Para termos um arquivo env e poder utilizá-lo na nossa api, vamos precisar instalar o *dotenv* por meio do comando ```npm install --save dotenv```. Em seguida podemos criar um arquivo *.env* na raíz do nosso projeto. Nosso arquivo de configurações pode ter nossa string de conexão e qualquer outra informação que possa fazer sentido para facilitar a alteração, como por exemplo a porta da nossa api. Nosso arquivo então ficaria nesse formato:
 
 ```.env
-API_PORT=3000
+PORT=3000
 DATABASE_URL=postgres://nossa-string-de-conexao-que-pegamos-no-heroku-data
 ```
-Com as informações devidamente cadastradas, devemos fazer a aplicação carregá-las e podemos fazer isso no nosso arquivo *server.js* por meio da linha ```require('dotenv').config()```. Para passarmos a utilizar o nosso API_PORT do nosso arquivo, utilizaremos o comando ```process.env.API_PORT```:
+Com as informações devidamente cadastradas, devemos fazer a aplicação carregá-las e podemos fazer isso no nosso arquivo *server.js* por meio da linha ```require('dotenv').config()```. Para passarmos a utilizar o nosso PORT do nosso arquivo, utilizaremos o comando ```process.env.PORT```:
 
 ```server.js
 require('dotenv').config()
 const { app } = require("./src/app")
-const port = process.env.API_PORT
+const port = process.env.PORT || 3000 // caso o PORT seja informado o mesmo será utilizado, senão consideramos o valor padrão 3000
 
 app.listen(port, () => {
     console.log(`Servidor está rodando na porta ${port}`)
@@ -638,7 +638,7 @@ Ao clicar no botão *send*, se você passou o id de um médico que existe na lis
 
 ![test_put_postman](https://i.imgur.com/cfdeLFr.png)
 
-# Aula 5 (Sábado) - Rota PATCH, DELETE e publicação da API e Front
+# Aula 5 (Sábado) - Rota PATCH, DELETE e publicação da API
 
 ### Criando a rota PATCH
 
@@ -741,34 +741,37 @@ Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favo
 
 ### Deployando nossa API no Heroku
 
-Para deployar nossa api vamos no Heroku (https://dashboard.heroku.com/apps) e então clicamos na nossa aplicação *meu-medico-favorito* que estará lá listada:
+Para deployar nossa API vamos precisar instalar o Heroku CLI por meio desse passo a passo: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+Feito a instalação do Heroku CLI seguindo manual, ao rodar *heroku --version* e caso a instalação tenha sido feita corretamente, retornará a versão do nosso heroku instalado. Com o heroku instalado, então digitamos *heroku login* no nosso terminal para nos logarmos no heroku.
+
+Se formos no site do Heroku (https://dashboard.heroku.com/apps) veremos nossa aplicação que criamos:
 
 ![heroku_app](https://i.imgur.com/jigzv6I.png)
 
-Feito isso, seremos direcionadas para uma outra tela, onde devemos ir em *deploy* no menu:
+No caso aqui ela se chama *meu-medico-favorito*, então no comando que iremos fazer no terminal que informa a aplicação para onde iremos subir nosso código, iremos utilizar o nome dessa aplicação: *heroku git:remote -a meu-medico-favorito* . O que estamos fazendo na prática é adicionando o remote do Heroku no nosso repositório:
 
-![heroku_deploy_1](https://i.imgur.com/XC8aY9u.png)
+![heroku_deploy_remote](https://i.imgur.com/Ev0Q1mk.png)
 
-Clicamos então em *Create new pipeline*. onde será pedido um nome para nosso pipeline que podemos batizar de *meu-medico-favorito-staging* (staging é um ambiente de preparação (do inglês staging) ou pré-produção é um ambiente de teste que se assemelha exatamente a um ambiente de produção):
+Após isso iremos precisar informar ao Heroku que a buildback que ele precisa utilizar é a do Nodejs por meio do comando: *heroku buildpacks:set heroku/nodejs*
 
-![heroku_deploy_2](https://i.imgur.com/BwkyOba.png)
+Com isso podemos subir nossa API para o Heroku por meio do comando *git push heroku master*. É importante lembrar que para que o comando funcione, o package.json precisa estar na raíz do seu repositório, senão ele não vai conseguir executar o comando, dando um erro como o abaixo:
 
-![heroku_deploy_3](https://i.imgur.com/g7Xln3Y.png)
+```
+remote: -----> Building on the Heroku-20 stack
+remote: -----> Using buildpack: heroku/nodejs
+remote: -----> App not compatible with buildpack: https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/nodejs.tgz
+remote:        
+remote:  !     ERROR: Application not supported by 'heroku/nodejs' buildpack
+```
 
-Clicamos então no botão de *Create pipeline*. Feito isso seremos direcionadas para a tela onde foi criado nosso pipeline:
+Com o código deployado no Heroku podemos ir no link *https://dashboard.heroku.com/apps* e acessar nosso app *meu-medico-favorito*. Feito isso poderemos ver o nosso histórico de deploys:
 
-![heroku_deploy_4](https://i.imgur.com/h0En5NZ.png)
+![heroku_deploys](https://i.imgur.com/7020oGx.png)
 
-Vamos agora em *Settings* fazer com que o nosso código da API seja deployado no Heroku por meio desse pipeline que criamos:
+Clicando no botão de *Open App* uma aba nova será aberta (ex: https://meu-medico-favorito.herokuapp.com/) mostrando a nossa API rodando no Heroku trazendo a informação de *{"title":"Minha API Rest Nodejs","version":"1.0.0"}*.
 
-![heroku_deploy_5](https://i.imgur.com/004i1tJ.png)
-
-Para que nosso código suba para o pipeline, precisamos autorizar o Github por meio do botão *Authorize GitHub*. Devemos seguir com a autorização até que o Github esteja liberado. Com isso iremos precisar informar o repositório onde está o código da nossa API, clicar em *Search*, conforme a imagem abaixo, e em seguida clicar em *Connect*:
-
-![heroku_deploy_6](https://i.imgur.com/MumROBU.png)
-
-Com isso ele irá informar que está conectado.
-
+Se formos no Postman e ao invés de chamar nossa API por *http://localhost:3000/doctors* como estávamos fazendo até então localmente passarmos a chamarmos por *https://meu-medico-favorito.herokuapp.com/doctors*, a mesma irá trazer nossos médicos caso tenha algum na lista. Agora nossa API está disponível para poder ser consumida por quem precisar ;)
 
 ### Acabamos, e agora?
 
