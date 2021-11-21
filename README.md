@@ -121,11 +121,11 @@ Agora que temos nosso banco de dados criado, podemos desenvolver a api que vai c
 
 # Aula 2 (Quarta) - Criando uma API Rest em Nodejs
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito". Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito" (no caso desse repositório é a *woman-can-code*, que é a pasta principal do nosso repositório). Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
-Com o terminal aberto na pasta "meu-medico-favorito", para iniciar nossa API Nodejs, precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
+Com o terminal aberto na raíz do nosso repositório, iremos iniciar nossa API Nodejs e para isso precisamos inicializar o *package manager*, que é o gerenciador de pacotes do Node. Para isso executaremos ```npm init``` no terminal. Pressionando “Enter”, serão exibidas uma sequência de perguntas que deverão ser preenchidas ou mantidas o valor padrão.
     
 Com isso um arquivo com o nome de package.json será criado. Esse arquivo é muito importante pois define que o nosso projeto como sendo Node.
 
@@ -141,7 +141,7 @@ Ao rodar a instalação do express, uma *pasta node_modules* com os pacotes do m
 
 ### Criando o arquivo .gitignore
 
-Devemos criar na raíz do "meu-medico-favorito" o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
+Devemos criar na raíz do repositório o arquivo *.gitignore* e escrever nele ```node_modules/``` para o git nao trackear essa pasta para commit.
 
 ### Criando a estrutura da nossa API
 
