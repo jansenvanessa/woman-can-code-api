@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
-//rotas
+//routes
 const index = require("./routes/index")
 const doctors = require("./routes/doctors")
 
@@ -16,14 +16,14 @@ app.use(function (req, res, next) {
 })
 
 app.options("/*", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers");
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers")
     res.header(
         "Access-Control-Allow-Methods",
         "PUT,POST,GET,DELETE,OPTIONS,PATCH"
     );
-    res.send("send some thing whatever");
-});
+    res.send("send some thing whatever")
+})
 
 app.use("/", index)
 app.use("/doctors", doctors)
