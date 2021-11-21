@@ -638,7 +638,7 @@ Ao clicar no botão *send*, se você passou o id de um médico que existe na lis
 
 ![test_put_postman](https://i.imgur.com/cfdeLFr.png)
 
-# Aula 5 (Sábado) - Rota PATCH, DELETE e publicação da API e Front
+# Aula 5 (Sábado) - Rota PATCH, DELETE e publicação da API
 
 ### Criando a rota PATCH
 
@@ -772,10 +772,6 @@ Com o código deployado no Heroku podemos ir no link *https://dashboard.heroku.c
 Clicando no botão de *Open App* uma aba nova será aberta (ex: https://meu-medico-favorito.herokuapp.com/) mostrando a nossa API rodando no Heroku trazendo a informação de *{"title":"Minha API Rest Nodejs","version":"1.0.0"}*.
 
 Se formos no Postman e ao invés de chamar nossa API por *http://localhost:3000/doctors* como estávamos fazendo até então localmente passarmos a chamarmos por *https://meu-medico-favorito.herokuapp.com/doctors*, a mesma irá trazer nossos médicos caso tenha algum na lista. Agora nossa API está disponível para poder ser consumida por quem precisar ;)
-
-### Deployando o nosso front
-
-//TO DO
 
 ### Acabamos, e agora?
 
