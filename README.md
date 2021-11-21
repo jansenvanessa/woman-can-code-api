@@ -121,7 +121,7 @@ Agora que temos nosso banco de dados criado, podemos desenvolver a api que vai c
 
 # Aula 2 (Quarta) - Criando uma API Rest em Nodejs
 
-Primeiro, para a construção do backend do nosso produto em Nodejs criaremos uma pasta chamada "meu-medico-favorito" (no caso desse repositório é a *woman-can-code*, que é a pasta principal do nosso repositório). Abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
+Primeiro, para a construção do backend do nosso produto em Nodejs é criar um repositório novo no Github (ex: meu-medico-favorito) e cloná-lo para nossa máquina. Feito isso, abriremos a mesma no programa Visual Studio Code e inicializaremos o terminal nessa mesma pasta.
 
 ### Iniciando a API Nodejs
 
