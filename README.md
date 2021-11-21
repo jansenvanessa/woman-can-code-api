@@ -50,9 +50,11 @@ Então na nossa API devemos informar o código ao responder as requisições fei
 
 ## Projeto Meu Médico Favorito
 
-![minion-doctor](https://i.pinimg.com/originals/e5/39/dd/e539ddb9015127fa465ec849d2860ccb.jpg)
+Agora que recordamos o conceito de API Rest, podemos seguir para os próximos passos colocando em prática a teoria aprendida. Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele, sendo possível dessa maneira, o paciente ter um acesso mais rápido aos médicos que mais gostou do atendimento.
 
-Agora que recordamos o conceito de API Rest, podemos seguir para os próximos passos colocando em prática a teoria aprendida. Vamos desenvolver um novo produto onde o usuário poderá pesquisar médicos e favoritar os preferidos por ele, sendo possível dessa maneira, o paciente ter um acesso mais rápido aos médicos que mais gostou do atendimento. Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
+![minion-doctor](https://i.imgur.com/3TLm0lH.png)
+
+Você será a desenvolvedora backend responsável pelo desenvolvimento da API que deverá ser feito em Nodejs. Em paralelo, o time de Frontend irá desenvolver a página web que irá se comunicar com a API que você irá desenvolver.
 
 O novo produto deverá:
 
@@ -534,6 +536,10 @@ Para testar nossa rota GET de listagem de todos os médicos no Postman, deveremo
 
 Caso queiramos utilizar nosso filtro para trazer os médicos favoritos ou os médicos não favoritos, basta acrescentar *?favorite=true* ou *?favorite=false* ao final da url. Exemplo: *http://localhost:3000/doctors?favorite=true*
 
+### Visualizando lista de médicos no front
+
+Agora que temos nossa rota de listar os médicos podemos ir na pasta *frontend-exemplo* e abrir o arquivo *index.html* no navegador. Fazendo isso vamos conseguir ver nossos médicos listados! Isso acontece pois o código do frontend está chamando a rota GET que criamos, que legal né?
+
 # Aula 4 (Sexta) - Rotas GET by id e PUT
 
 ### Criando a rota GET (by id)
@@ -681,6 +687,10 @@ Ao clicar no botão *send*, se você passou o id de um médico que existe na lis
 
 ![test_patch_postman](https://i.imgur.com/FpnuKM0.png)
 
+### Favoritando e desfavoritando médicos no front
+
+Agora que temos nossa rota de PATCH que favorita e desfavorita médicos podemos ir na pasta *frontend-exemplo*, abrir o arquivo *index.html* no navegador e com a lista de médicos aparecendo, conseguimos clicar na estrela para favoritar e clicar novamente para desfavoritar! Caso você chame no Postman a rota que lista os médicos, vai conseguir ver a mudança no atributo *favorite*.
+
 ## Criando a rota de DELETE
 
 Precisamos criar uma rota para poder deletar um médico, dado um id. Deveremos então implementar uma rota de DELETE que deverá permitir deletar o médico da nossa tabela do banco de dados. Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
@@ -721,13 +731,44 @@ Para testar, via Postman, a rota DELETE que deleta um médico, deveremos clicar 
 
 ![test_delete_postman](https://i.imgur.com/u28V8zM.png)
 
+### Deletando médicos no front
+
+Podemos também deletar os médicos pelo nosso front indo na pasta *frontend-exemplo* e abrindo o arquivo *index.html* no navegador. Com a lista de médicos aparecendo e clicando na lixeira ao lado do médico desejado, a rota de DELETE referente aquele médico é chamada e ele deletado.
+
 ### API Pronta!
 
 Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favorito. Criamos a rota de POST (que cria um novo médico), duas rotas de GET (uma para trazer todos os médicos (favoritos ou não) e uma para trazer um médico dado o id), PUT (para alterar o médico), PATCH (para favoritar um médico) e DELETE (para deletar o médico). Nossas rotas estão todas desenvolvidas, porém estão rodando tudo localmente. Vamos subir para o Heroku?
 
-### Deployando nossa api no Heroku
+### Deployando nossa API no Heroku
 
-- TO DO
+Para deployar nossa api vamos no Heroku (https://dashboard.heroku.com/apps) e então clicamos na nossa aplicação *meu-medico-favorito* que estará lá listada:
+
+![heroku_app](https://i.imgur.com/jigzv6I.png)
+
+Feito isso, seremos direcionadas para uma outra tela, onde devemos ir em *deploy* no menu:
+
+![heroku_deploy_1](https://i.imgur.com/XC8aY9u.png)
+
+Clicamos então em *Create new pipeline*. onde será pedido um nome para nosso pipeline que podemos batizar de *meu-medico-favorito-staging* (staging é um ambiente de preparação (do inglês staging) ou pré-produção é um ambiente de teste que se assemelha exatamente a um ambiente de produção):
+
+![heroku_deploy_2](https://i.imgur.com/BwkyOba.png)
+
+![heroku_deploy_3](https://i.imgur.com/g7Xln3Y.png)
+
+Clicamos então no botão de *Create pipeline*. Feito isso seremos direcionadas para a tela onde foi criado nosso pipeline:
+
+![heroku_deploy_4](https://i.imgur.com/h0En5NZ.png)
+
+Vamos agora em *Settings* fazer com que o nosso código da API seja deployado no Heroku por meio desse pipeline que criamos:
+
+![heroku_deploy_5](https://i.imgur.com/004i1tJ.png)
+
+Para que nosso código suba para o pipeline, precisamos autorizar o Github por meio do botão *Authorize GitHub*. Devemos seguir com a autorização até que o Github esteja liberado. Com isso iremos precisar informar o repositório onde está o código da nossa API, clicar em *Search*, conforme a imagem abaixo, e em seguida clicar em *Connect*:
+
+![heroku_deploy_6](https://i.imgur.com/MumROBU.png)
+
+Com isso ele irá informar que está conectado.
+
 
 ### Acabamos, e agora?
 
@@ -735,5 +776,11 @@ Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favo
 
 Agora que nossa API está implementada, podemos e devemos exercitar! Será que podemos melhorar nosso código? Temos linhas se códigos repetidas que poderiam virar funções e serem reaproveitadas? Sempre há algo para melhorar, então fique a vontade para mexer e melhorar o código!
 
+### Exercício
+
+Aqui nesse treinamento aprendemos a construir uma API de ponta a ponta, que tal treinarmos mais um pouco? Elaboramos um exercício para ser entregue em até uma semana, para mais detalhes acesse: https://github.com/jansenvanessa/woman-can-code-api/blob/master/exerc%C3%ADcio/vacina.md
+
 Espero que tenha gostado da atividade e o segredo é praticar!!! Quanto mais exercícios fizer, melhor :) Abs e até mais!
+
+
 
