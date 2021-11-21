@@ -687,6 +687,10 @@ Ao clicar no botão *send*, se você passou o id de um médico que existe na lis
 
 ![test_patch_postman](https://i.imgur.com/FpnuKM0.png)
 
+### Favoritando e desfavoritando médicos no front
+
+Agora que temos nossa rota de PATCH que favorita e desfavorita médicos podemos ir na pasta *frontend-exemplo*, abrir o arquivo *index.html* no navegador e com a lista de médicos aparecendo, conseguimos clicar na estrela para favoritar e clicar novamente para desfavoritar! Caso você chame no Postman a rota que lista os médicos, vai conseguir ver a mudança no atributo *favorite*.
+
 ## Criando a rota de DELETE
 
 Precisamos criar uma rota para poder deletar um médico, dado um id. Deveremos então implementar uma rota de DELETE que deverá permitir deletar o médico da nossa tabela do banco de dados. Para isso, no nosso arquivo de rotas de médicos (*routes/doctors.js*), deveremos incluir a seguinte rota:
@@ -726,6 +730,10 @@ module.exports = {
 Para testar, via Postman, a rota DELETE que deleta um médico, deveremos clicar em New > Request. Com a nova requisição aberta, deveremos escolher na combobox o verbo HTTP *DELETE* e digitar *http://localhost:3000/doctors/1* (escolhi o id 1 mas poderia ter escolhido outro id qualquer existente na lista). Ao clicar no botão *send*, se você passou o id de um médico que existe, deverá ser retornado um 200, informando que ok deu tudo certo, não tem nada para retornar. Mas caso você passe um id de um médico que não existe, ele deve retornar um status 404 informando que o médico não foi encontrado para ser deletado.
 
 ![test_delete_postman](https://i.imgur.com/u28V8zM.png)
+
+### Deletando médicos no front
+
+Podemos também deletar os médicos pelo nosso front indo na pasta *frontend-exemplo* e abrindo o arquivo *index.html* no navegador. Com a lista de médicos aparecendo e clicando na lixeira ao lado do médico desejado, a rota de DELETE referente aquele médico é chamada e ele deletado.
 
 ### API Pronta!
 
