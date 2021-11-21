@@ -739,9 +739,36 @@ Podemos também deletar os médicos pelo nosso front indo na pasta *frontend-exe
 
 Desenvolvemos todas as rotas necessárias para nosso produto do Meu Médico Favorito. Criamos a rota de POST (que cria um novo médico), duas rotas de GET (uma para trazer todos os médicos (favoritos ou não) e uma para trazer um médico dado o id), PUT (para alterar o médico), PATCH (para favoritar um médico) e DELETE (para deletar o médico). Nossas rotas estão todas desenvolvidas, porém estão rodando tudo localmente. Vamos subir para o Heroku?
 
-### Deployando nossa api no Heroku
+### Deployando nossa API no Heroku
 
-- TO DO
+Para deployar nossa api vamos no Heroku (https://dashboard.heroku.com/apps) e então clicamos na nossa aplicação *meu-medico-favorito* que estará lá listada:
+
+![heroku_app](https://i.imgur.com/jigzv6I.png)
+
+Feito isso, seremos direcionadas para uma outra tela, onde devemos ir em *deploy* no menu:
+
+![heroku_deploy_1](https://i.imgur.com/XC8aY9u.png)
+
+Clicamos então em *Create new pipeline*. onde será pedido um nome para nosso pipeline que podemos batizar de *meu-medico-favorito-staging* (staging é um ambiente de preparação (do inglês staging) ou pré-produção é um ambiente de teste que se assemelha exatamente a um ambiente de produção):
+
+![heroku_deploy_2](https://i.imgur.com/BwkyOba.png)
+
+![heroku_deploy_3](https://i.imgur.com/g7Xln3Y.png)
+
+Clicamos então no botão de *Create pipeline*. Feito isso seremos direcionadas para a tela onde foi criado nosso pipeline:
+
+![heroku_deploy_4](https://i.imgur.com/h0En5NZ.png)
+
+Vamos agora em *Settings* fazer com que o nosso código da API seja deployado no Heroku por meio desse pipeline que criamos:
+
+![heroku_deploy_5](https://i.imgur.com/004i1tJ.png)
+
+Para que nosso código suba para o pipeline, precisamos autorizar o Github por meio do botão *Authorize GitHub*. Devemos seguir com a autorização até que o Github esteja liberado. Com isso iremos precisar informar o repositório onde está o código da nossa API, clicar em *Search*, conforme a imagem abaixo, e em seguida clicar em *Connect*:
+
+![heroku_deploy_6](https://i.imgur.com/MumROBU.png)
+
+Com isso ele irá informar que está conectado.
+
 
 ### Acabamos, e agora?
 
