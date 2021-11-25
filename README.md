@@ -781,7 +781,7 @@ Agora que nossa API está implementada, podemos e devemos exercitar! Será que p
 
 ### Exercício
 
-Aqui nesse treinamento aprendemos a construir uma API de ponta a ponta, que tal treinarmos mais um pouco? Elaboramos um exercício para ser entregue em até uma semana, para mais detalhes acesse: https://github.com/jansenvanessa/woman-can-code-api/blob/master/exerc%C3%ADcio/vacina.md
+Aqui nesse treinamento aprendemos a construir uma API de ponta a ponta, que tal treinarmos mais um pouco? Elaboramos um exercício para ser entregue em até uma semana, para mais detalhes acesse: https://github.com/jansenvanessa/woman-can-code-api/blob/master/extras/exerc%C3%ADcio/vacina.md
 
 Espero que tenha gostado da atividade e o segredo é praticar!!! Quanto mais exercícios fizer, melhor :) Abs e até mais!
 
