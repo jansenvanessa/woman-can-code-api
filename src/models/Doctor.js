@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { database } = require("./db");
+const { database } = require("../db");
 
 const Doctor = database.define("Doctor", {
   id: {
@@ -14,7 +14,7 @@ const Doctor = database.define("Doctor", {
   crm: {
     type: DataTypes.STRING,
   },
-  speciality: {
+  specialty: {
     type: DataTypes.STRING,
   },
   clinic: {

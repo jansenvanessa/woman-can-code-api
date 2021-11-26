@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
-// require("./Doctors");
+
+const doctors = require("./routes/doctors")
+const index = require("./routes/index")
 
 app.use(express.json());
 
@@ -12,5 +14,9 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+app.use("/", index)
+
+app.use("/doctors", doctors)
 
 module.exports = app;
