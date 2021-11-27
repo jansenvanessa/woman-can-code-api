@@ -12,10 +12,13 @@ const createDoctor = async (req, res) => {
 }
 
 const getAllDoctors = async (req, res) => {
-    const { favorite = false } = req.query 
+    const { favorite = false } = req.query
     try {
-        const where = favorite ? { where: { favorite } }: {}
-        const doctors = await Doctor.findAll(where)
+        const where = favorite ? { where: { favorite } } : {}
+        const doctors = await Doctor.findAll({
+            where,
+            order: [['id', 'ASC']] // para o inverso trocar ASC por DESC
+        })
         if (doctors && doctors.length > 0) {
             res.status(200).send(doctors)
         } else {
@@ -23,15 +26,46 @@ const getAllDoctors = async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ message: error.message })
-        // messageError(res, error)
     }
 }
 
-// const messageError = (res, error) => {
-//     res.status(500).send({ message: error.message })
-// }
+const getDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    try {
+        const doctor = await Doctor.findOne({
+            where: { id: doctorId }
+        })
+        if (doctor) {
+            res.status(200).send(doctor)
+        } else {
+            res.status(404).send({ message: `medico de id ${doctorId} nao foi encontrado na base` })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+
+}
+
+const updateDoctor = async (req, res) => {
+    const doctorId = req.params.id
+    const { name, crm, specialty, clinic, phone, favorite } = req.body
+    try {
+        const rowsUpdated = await Doctor.update({ name, crm, specialty, clinic, phone, favorite }, {
+            where: { id: doctorId }
+        })
+        if (rowsUpdated && rowsUpdated[0] > 0) {
+            res.status(200).send({ message: "Medico alterado com sucesso" })
+        } else {
+            res.status(404).send({ message: "Medico nao encontrado para alterar" })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message })
+    }
+}
 
 module.exports = {
     createDoctor,
-    getAllDoctors
+    getAllDoctors,
+    getDoctor,
+    updateDoctor,
 }
