@@ -29,7 +29,7 @@ Sua API deve ser capaz de cadastrar uma nova vacina, visualizar as vacinas cadas
 Você irá criar essa API utilizando todos os recursos que aprendemos nas aulas, como o NodeJS, o banco de dados e a plataforma Heroku.
 Ao final do desenvolvimento você deverá enviar os itens abaixo para o email thaina.mariani@dasa.com.br.
 
-1) Seu código compactado ou somente o link do github caso esteja publicado por lá;
+1) O link do github do seu repositório;
 2) A URL em que sua API está hospedada no Heroku para podermos testá-la.
 
 Bora praticar!
