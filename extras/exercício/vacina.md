@@ -19,17 +19,17 @@ Sua API deve ser capaz de cadastrar uma nova vacina, visualizar as vacinas cadas
 
 | Verbo        | Recurso                    | Descrição                              |
 | ------------ | -------------------------- | -------------------------------------- |
-| GET          | `/vaccines`                 | Retornar todas as vacinas cadastradas  |
-| GET          | `/vaccines/:id`             | Retornar apenas uma vacina específica  |
+| GET          | `/vaccine`                 | Retornar todas as vacinas cadastradas  |
+| GET          | `/vaccine/:id`             | Retornar apenas uma vacina específica  |
 | POST         | `/vaccines`                | Cadastrar uma nova vacina              |
-| PATCH        | `/vaccines/:id/vaccinated`  | Marcar se tomou a vacina               |
+| PATCH        | `/vaccine/:id/vaccinated`  | Marcar se tomou a vacina               |
 
 ---
 
 Você irá criar essa API utilizando todos os recursos que aprendemos nas aulas, como o NodeJS, o banco de dados e a plataforma Heroku.
 Ao final do desenvolvimento você deverá enviar os itens abaixo para o email thaina.mariani@dasa.com.br.
 
-1) O link do seu código no github (não esqueça de deixar o repositório público);
+1) Seu código compactado ou somente o link do github caso esteja publicado por lá;
 2) A URL em que sua API está hospedada no Heroku para podermos testá-la.
 
 Bora praticar!
