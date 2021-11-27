@@ -19,10 +19,10 @@ Sua API deve ser capaz de cadastrar uma nova vacina, visualizar as vacinas cadas
 
 | Verbo        | Recurso                    | Descrição                              |
 | ------------ | -------------------------- | -------------------------------------- |
-| GET          | `/vaccine`                 | Retornar todas as vacinas cadastradas  |
-| GET          | `/vaccine/:id`             | Retornar apenas uma vacina específica  |
+| GET          | `/vaccines`                 | Retornar todas as vacinas cadastradas  |
+| GET          | `/vaccines/:id`             | Retornar apenas uma vacina específica  |
 | POST         | `/vaccines`                | Cadastrar uma nova vacina              |
-| PATCH        | `/vaccine/:id/vaccinated`  | Marcar se tomou a vacina               |
+| PATCH        | `/vaccines/:id/vaccinated`  | Marcar se tomou a vacina               |
 
 ---
 
